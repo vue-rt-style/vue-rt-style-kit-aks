@@ -1,6 +1,6 @@
 {
   "name": "vue-rt-style-kit-aks",
-  "version": "0.0.01",
+  "version": "0.0.1",
   "description": "",
   "main": "lib/vue-rt-style-kit-aks.js",
   "scripts": {
