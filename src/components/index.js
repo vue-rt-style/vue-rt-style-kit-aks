@@ -1,1 +1,10 @@
+export {default as ACArchiveComponent} from './ACArchiveComponent/ACArchiveComponent.vue';
+export {default as ACConfirmationPopup} from './ACConfirmationPopup/ACConfirmationPopup.vue';
+export {default as ACCreationPopup} from './ACCreationPopup/ACCreationPopup.vue';
+export {default as ACFooter} from './ACFooter/ACFooter.vue';
 export {default as ACHeader} from './ACHeader/ACHeader.vue';
+export {default as ACInvitationPopup} from './ACInvitationPopup/ACInvitationPopup.vue';
+export {default as ACListComponent} from './ACListComponent/ACListComponent.vue';
+export {default as ACManagePopup} from './ACManagePopup/ACManagePopup.vue';
+export {default as ACPhonebookComponent} from './ACPhonebookComponent/ACPhonebookComponent.vue';
+export {default as ACSettingsPopup} from './ACSettingsPopup/ACSettingsPopup.vue';

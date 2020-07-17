@@ -3,7 +3,16 @@ import "./css/vue-rt-style-kit-aks.styl";
 import Project from "@projectAks";
 
 import {
-  ACHeader
+  ACArchiveComponent,
+  ACConfirmationPopup,
+  ACCreationPopup,
+  ACFooter,
+  ACHeader,
+  ACInvitationPopup,
+  ACListComponent,
+  ACManagePopup,
+  ACPhonebookComponent,
+  ACSettingsPopup
 } from "./components";
 
 
@@ -31,5 +40,14 @@ VueRtStyle.version = version;
 
 export default VueRtStyle;
 export {
-  ACHeader
+  ACArchiveComponent,
+  ACConfirmationPopup,
+  ACCreationPopup,
+  ACFooter,
+  ACHeader,
+  ACInvitationPopup,
+  ACListComponent,
+  ACManagePopup,
+  ACPhonebookComponent,
+  ACSettingsPopup
 }
