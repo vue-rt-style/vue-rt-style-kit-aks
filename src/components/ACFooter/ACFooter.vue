@@ -1,7 +1,7 @@
 <script type="text/jsx">
     const componentsList = {};
     export default {
-        name: "ACHeader",
+        name: "ACFooter",
         components: componentsList,
         props:{
             phone: {

@@ -19,7 +19,16 @@ import {
 const VueRtStyle = {
   install(Vue, config) {
     if (!Vue.RtStyleAks) {
+      Vue.component(ACArchiveComponent.name, ACArchiveComponent);
+      Vue.component(ACConfirmationPopup.name, ACConfirmationPopup);
+      Vue.component(ACCreationPopup.name, ACCreationPopup);
+      Vue.component(ACFooter.name, ACFooter);
       Vue.component(ACHeader.name, ACHeader);
+      Vue.component(ACInvitationPopup.name, ACInvitationPopup);
+      Vue.component(ACListComponent.name, ACListComponent);
+      Vue.component(ACManagePopup.name, ACManagePopup);
+      Vue.component(ACPhonebookComponent.name, ACPhonebookComponent);
+      Vue.component(ACSettingsPopup.name, ACSettingsPopup);
       Vue.RtStyleAks = true;
     }
   }

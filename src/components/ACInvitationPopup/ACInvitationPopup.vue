@@ -1,7 +1,7 @@
 <script type="text/jsx">
     const componentsList = {};
     export default {
-        name: "ACSInvitationPopup",
+        name: "ACInvitationPopup",
         components: componentsList,
         props:{
 
