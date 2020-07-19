@@ -32,9 +32,9 @@
                         <div class="conference-header__inner">
                             <rt-logo show-text={true} height="44px" width="26px" top-fill-color="b2c-slate"/>
                             <div class="conference-header__navigation">
-                                <a href="#" class="conference-header__navigation-item conference-header__navigation-item--active">Аудиоконференции</a>
-                                <a href="#" class="conference-header__navigation-item">Архив</a>
-                                <a href="#" class="conference-header__navigation-item">Адресная книга</a>
+                                <a href="/audioconference1" class="conference-header__navigation-item conference-header__navigation-item--active">Аудиоконференции</a>
+                                <a href="/audioconference2" class="conference-header__navigation-item">Архив</a>
+                                <a href="/audioconference3" class="conference-header__navigation-item">Адресная книга</a>
                             </div>
                             <div class="conference-header__person">
                                 <div class="conference-header__phone">

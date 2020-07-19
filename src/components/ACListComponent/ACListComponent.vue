@@ -221,16 +221,16 @@
                             </div>
                         </div>
                     </div>
-                    <div class="conference-list__navigation paginator d-flex sp-t-2">
+                    <div class="conference-list__navigation paginator d-flex sp-t-2 sp-b-1">
                         <div class="paginator__pages">
-                        <span class="arrow-back paginator__item">
-                            <svg width="8px" height="12px" viewBox="0 0 8 12" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.5">
-                                    <g transform="translate(-6.000000, -4.000000)" fill="#575D68">
-                                        <polygon points="12 4 6 9.999 12 16 13.409 14.591 13.409 14.589 8.83 9.999 13.409 5.411 13.409 5.409"></polygon>
+                            <span class="arrow-back paginator__item">
+                                <svg width="8px" height="12px" viewBox="0 0 8 12" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.5">
+                                        <g transform="translate(-6.000000, -4.000000)" fill="#575D68">
+                                            <polygon points="12 4 6 9.999 12 16 13.409 14.591 13.409 14.589 8.83 9.999 13.409 5.411 13.409 5.409"></polygon>
+                                        </g>
                                     </g>
-                                </g>
-                            </svg>
+                                </svg>
                             </span>
                             <span class="paginator__item">1</span>
                             <span class="paginator__item">...</span>

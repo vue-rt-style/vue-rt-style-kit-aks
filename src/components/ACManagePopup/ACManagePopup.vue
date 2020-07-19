@@ -15,7 +15,7 @@
         created() {},
         methods: {},
         render(h) {
-            return <rt-real-popup trigger-element-class="conference-header__settings-icon" main-wrapper-class="app" position-center={true} class="rtb-popup-wrapper--active">
+            return <rt-real-popup trigger-element-class="conference-header__settings-icon" main-wrapper-class="app" position-center={true}>
                 <div class="popup-content">
                     <h3 class="rt-font-h3 sp-b-1">Управление конференцией</h3>
                     <div class="d-flex sp-b-1">
@@ -203,7 +203,7 @@
                                                     </g>
                                                 </g>
                                             </g>
-                                        </svg>                                    
+                                        </svg>
                                     </button>
                                     <button class="action-buttons__item participant__delete">
                                         <svg width="11px" height="11px" viewBox="0 0 11 11" version="1.1" xmlns="http://www.w3.org/2000/svg">
