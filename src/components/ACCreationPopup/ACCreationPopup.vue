@@ -56,7 +56,7 @@
                     </div>
                 })
             }
-            return <rt-real-popup trigger-element-class="conference-header__create" main-wrapper-class="app" position-center={true}>
+            return <rt-real-popup trigger-element-class="create-button" main-wrapper-class="app" position-center={true} class="create-popup">
                 <div class="popup-content">
                     <h3 class="rt-font-h3 sp-b-1">Создание новой конференции</h3>
                     <div class="field-wrapper sp-b-1">

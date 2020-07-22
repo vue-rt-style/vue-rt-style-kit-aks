@@ -52,7 +52,7 @@
                 return <div class="conference__list">
                     <div class="row">
                         <div class="rt-col-6">
-                            <rt-button class="rt-button-orange">Создать новую конференцию</rt-button>
+                            <rt-button class="rt-button-orange create-button" target-popup="create-popup" popup-button={true}>Создать новую конференцию</rt-button>
                         </div>
                         <div class="rt-col-6">
                             <div class="flex-center-center">
