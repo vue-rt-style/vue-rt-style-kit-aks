@@ -14,7 +14,11 @@
         },
         mounted() {},
         created() {},
-        methods: {},
+        methods: {
+            toggleOpen($event){
+                $event.target.closest('.conference-list__item').classList.toggle('conference-list__item--active');
+            }
+        },
         render(h) {
             if(this.conferenceList.length == 0) {
                 return <div class="conference__list conference__list--empty">
@@ -91,7 +95,7 @@
                         <div class="conference-list__title-field">Управление</div>
                     </div>
                     <div class="conference-list__body">
-                        <div class="conference-list__item rt-font-control conference-list__item--active">
+                        <div class="conference-list__item rt-font-control">
                             <div class="conference-list__item-top-part d-flex">
                                 <div class="conference-list__item-field">
                                     <div class="conference-list__item__icon active-conference-icon">
@@ -118,7 +122,7 @@
                                 <div class="conference-list__item-field">10</div>
                                 <div class="conference-list__item-field">есть</div>
                                 <div class="conference-list__item-field">
-                                    <div class="conference-list__item__icon">
+                                    <div class="conference-list__item__icon" onClick={this.toggleOpen}>
                                         <svg width="25px" height="24px" viewBox="0 0 25 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
                                             <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                                 <g transform="translate(1.000000, 0.000000)">
@@ -159,7 +163,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="conference-list__item rt-font-control conference-list__item--active">
+                        <div class="conference-list__item rt-font-control">
                             <div class="conference-list__item-top-part d-flex">
                                 <div class="conference-list__item-field">
                                     <div class="conference-list__item__icon active-conference-icon">

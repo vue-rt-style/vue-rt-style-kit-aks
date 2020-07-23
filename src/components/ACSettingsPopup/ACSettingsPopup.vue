@@ -93,7 +93,6 @@
                     {label:"Ямало-Ненецкий АО",selected:false},
                     {label:"Ярославская обл",selected:false},
                 ]
-
             }
         },
         mounted() {},
@@ -107,7 +106,7 @@
                     </rt-select-option>
                 })
             }
-            return <rt-real-popup trigger-element-class="conference-header__settings-icon" main-wrapper-class="app" position-center={true}>
+            return <rt-real-popup trigger-element-class="conference-header__settings-icon" main-wrapper-class="app" position-center={true} class="settings-popup">
                 <div class="popup-content">
                     <h3 class="rt-font-h3 sp-b-1">Настройки личного кабинета</h3>
                     <rt-tabs>

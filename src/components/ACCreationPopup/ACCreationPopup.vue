@@ -13,7 +13,11 @@
         },
         mounted() {},
         created() {},
-        methods: {},
+        methods: {
+            closeThisPopup() {
+                this.$el.querySelector('.rtb-popup-close').dispatchEvent(new MouseEvent('click'));
+            }
+        },
         render(h) {
             const participantsList = () => {
                 let list = [];
@@ -55,7 +59,7 @@
                         </div>
                     </div>
                 })
-            }
+            };
             return <rt-real-popup trigger-element-class="create-button" main-wrapper-class="app" position-center={true} class="create-popup">
                 <div class="popup-content">
                     <h3 class="rt-font-h3 sp-b-1">Создание новой конференции</h3>
@@ -115,7 +119,7 @@
                                 <rt-hint simple-tool-tip={true}>4х-значное число. В случае, если выбрана
                                     конференция с Лидером, то PIN-коды будут совпадать.
                                 </rt-hint>
-                                <div class="sp-t-1 input-with-hint">
+                                <div class="sp-t-1 input-with-hint input-with-hint--outlined">
                                     <rt-input type="number" is-b2b-input={true} outlined={true} placeholder="Задайте PIN-код Лидера"/>
                                     <rt-hint simple-tool-tip={true}>4х-значное число. В случае, если выбрана
                                     конференция с Лидером, то PIN-коды будут совпадать.
@@ -127,7 +131,7 @@
                                 <rt-hint simple-tool-tip={true}>4х-значное число. В случае, если выбрана
                                     конференция с Лидером, то PIN-коды будут совпадать.
                                 </rt-hint>
-                                <div class="sp-t-1 input-with-hint">
+                                <div class="sp-t-1 input-with-hint input-with-hint--outlined">
                                     <rt-input type="number" is-b2b-input={true} outlined={true} placeholder="Задайте PIN-код Модератора"/>
                                     <rt-hint simple-tool-tip={true}>4х-значное число. В случае, если выбрана
                                     конференция с Лидером, то PIN-коды будут совпадать.
@@ -183,7 +187,8 @@
                         </div>
                     </div>
                     <div class="flex-start-center sp-t-1">
-                        <rt-button class="rt-button-orange d-inline-block fs0">Создать конференцию</rt-button>
+                        <rt-button class="rt-button-orange d-inline-block fs0 confirmation-button"
+                                   target-popup="confirmation-popup" popup-button={true} onClick={this.closeThisPopup}>Создать конференцию</rt-button>
                         <span class="rt-font-label d-inline-block sp-l-1 color-main05">После создания конференции
                                     её можно редактировать. Возможность редактирования прекращается за 10 минут до
                                     начала конференции.</span>

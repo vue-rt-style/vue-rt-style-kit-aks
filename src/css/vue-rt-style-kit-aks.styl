@@ -143,6 +143,15 @@ json("./color.json")
           left 70px
           top -1px
           right 30px
+      &-bottom-part
+        max-height 0
+        transition max-height .2s linear, padding .2s linear
+        overflow hidden
+        padding 0
+      &--active
+        .conference__phonebook__item-bottom-part
+          max-height 150px
+          padding 24px 0
   &__archive
     &--start
       background-color b2c-white
@@ -189,6 +198,10 @@ json("./color.json")
     top 50%
     right 0
     transform translateY(-50%)
+  &--outlined
+    .{b2bAppName}-hint
+      right 12px
+      transform none
 
 .full-height
   height 100%
@@ -408,9 +421,16 @@ json("./color.json")
     &-top-part
       padding-bottom 20px
     &-bottom-part
-      border-top 1px solid b2c-cool-grey
-      padding-top 12px
+      padding-top 0
       color main-color05
+      max-height 0
+      overflow hidden
+      transition max-height .15s linear, padding-top .15s linear
+    &--active
+      .conference-list__item-bottom-part
+        max-height 100px
+        border-top 1px solid b2c-cool-grey
+        padding-top 12px
 
 .bottom-part-item
   &:nth-child(1)
@@ -582,6 +602,7 @@ json("./color.json")
         flex-basis 10%
       &-icon
         transition transform .3s linear
+        margin-top 4px
         &--reversed
           transform rotate(180deg)
     &__icon
@@ -593,8 +614,11 @@ json("./color.json")
       padding-bottom 20px
       align-items flex-start
     &-bottom-part
-      padding-top 12px
+      //padding-top 12px
       position relative
+      max-height 0
+      overflow hidden
+      transition max-height .3s linear
       &:before
         position absolute
         content ''
@@ -603,6 +627,9 @@ json("./color.json")
         top -1px
         left -20px
         right -20px
+    &--opened
+      .conference-archive__item-bottom-part
+        max-height 500px
 
 .aa-bottom-part
   &__participant-item,

@@ -13,14 +13,20 @@
         },
         mounted() {},
         created() {},
-        methods: {},
+        methods: {
+            closeThisPopup() {
+                this.$el.querySelector('.rtb-popup-close').dispatchEvent(new MouseEvent('click'));
+            }
+        },
         render(h) {
-            return <rt-real-popup trigger-element-class="conference-header__create" main-wrapper-class="app" position-center={true}>
+            return <rt-real-popup trigger-element-class="confirmation-button" main-wrapper-class="app"
+                                  position-center={true} class="confirmation-popup">
                 <div class="popup-content">
                     <h3 class="rt-font-h3 sp-b-1">Конференция успешно запланирована!</h3>
                     <p class="rt-font-small-paragraph sp-b-1-3">Теперь вы можете отправить приглашения всем
                         участникам конференции, отредактировать её или удалить.</p>
-                    <rt-button class="rt-button-cool-grey-border" small={true}>
+                    <rt-button class="rt-button-cool-grey-border invitation-button" small={true} target-popup="invitation-popup"
+                               popup-button={true} onClick={this.closeThisPopup}>
                         <svg width="20px" height="16px" viewBox="0 0 20 16" version="1.1" xmlns="http://www.w3.org/2000/svg">
                             <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                 <g transform="translate(-418.000000, -281.000000)">
@@ -35,7 +41,8 @@
                         </svg>
                         <span class="sp-l-0-3">Отправить приглашения</span>
                     </rt-button>
-                    <rt-button class="rt-button-cool-grey-border" small={true}>
+                    <rt-button class="rt-button-cool-grey-border creation-button" small={true} target-popup="create-popup"
+                               popup-button={true} onClick={this.closeThisPopup}>
                         <svg width="15px" height="16px" viewBox="0 0 15 16" version="1.1" xmlns="http://www.w3.org/2000/svg">
                             <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                 <g transform="translate(-657.000000, -281.000000)">
@@ -50,7 +57,7 @@
                         </svg>
                         <span class="sp-l-0-3">Редактировать конференцию</span>
                     </rt-button>
-                    <rt-button class="rt-button-cool-grey-border" small={true}>
+                    <rt-button class="rt-button-cool-grey-border" small={true} onClick={this.closeThisPopup}>
                         <svg width="14px" height="18px" viewBox="0 0 14 18" version="1.1" xmlns="http://www.w3.org/2000/svg">
                             <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                 <g transform="translate(-927.000000, -280.000000)">
@@ -136,7 +143,7 @@
                         </template>
                     </rt-table>
                     <div class="sp-t-1-3">
-                        <rt-button class="rt-button-orange">Готово</rt-button>
+                        <rt-button class="rt-button-orange" onClick={this.closeThisPopup}>Готово</rt-button>
                     </div>
                 </div>
             </rt-real-popup>

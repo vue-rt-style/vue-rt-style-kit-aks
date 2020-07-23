@@ -16,7 +16,12 @@
         },
         mounted() {},
         created() {},
-        methods: {},
+        methods: {
+            toggleOpen($event){
+              $event.target.closest('.conference-archive__item').classList.toggle('conference-archive__item--opened');
+              $event.target.closest('.conference-archive__item-field').querySelector('.conference-archive__item-field-icon').classList.toggle('conference-archive__item-field-icon--reversed');
+            }
+        },
         render(h) {
             if(!this.wasResponse) {
                 return <div class="archive-wrapper">
@@ -164,7 +169,7 @@
                                             <div class="conference-archive__item-field">10 ч 00 мин</div>
                                             <div class="conference-archive__item-field">Кузнечикова М.М.</div>
                                             <div class="conference-archive__item-field">Финансовая отчетность за VI квартал 2019 года те…</div>
-                                            <div class="conference-archive__item-field d-flex d-space-between">
+                                            <div class="conference-archive__item-field d-flex d-space-between" onClick={this.toggleOpen}>
                                                 <span>есть</span>
                                                 <svg class="conference-archive__item-field-icon" width="13px" height="8px" viewBox="0 0 13 8" version="1.1" xmlns="http://www.w3.org/2000/svg">
                                                     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -180,7 +185,7 @@
                                             </div>
                                         </div>
                                         <div class="conference-archive__item-bottom-part">
-                                            <rt-tabs show-as-tags={true}>
+                                            <rt-tabs show-as-tags={true} class="sp-t-0-3">
                                                 <template slot="navigation">
                                                     <rt-tabs-nav-item  anchor="read2y!" remove-base-tag={true} name="2one">Статистика конференции</rt-tabs-nav-item>
                                                     <rt-tabs-nav-item anchor="hell2o" remove-base-tag={true} name="2two">Аудиозапись конференции</rt-tabs-nav-item>
@@ -284,9 +289,9 @@
                                             <div class="conference-archive__item-field">Финансовая отчетность за VI
                                                 квартал 2019 года те…
                                             </div>
-                                            <div class="conference-archive__item-field d-flex d-space-between">
+                                            <div class="conference-archive__item-field d-flex d-space-between" onClick={this.toggleOpen}>
                                                 <span>есть</span>
-                                                <svg class="conference-archive__item-field-icon conference-archive__item-field-icon--reversed" width="13px"
+                                                <svg class="conference-archive__item-field-icon" width="13px"
                                                      height="8px" viewBox="0 0 13 8" version="1.1"
                                                      xmlns="http://www.w3.org/2000/svg">
                                                     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">

@@ -22,9 +22,24 @@
             this.phoneNumber.splice(7, 0, " ");
             this.phoneNumber.splice(4, 0, " ");
             this.phoneNumber.splice(1, 0, " ");
+
+            if(location.href.includes('archive')){
+              this.$refs.archive.classList.add('conference-header__navigation-item--active')
+            } else if(location.href.includes('phonebook')) {
+              this.$refs.phonebook.classList.add('conference-header__navigation-item--active')
+            } else if(location.href.includes('list')){
+              this.$refs.list.classList.add('conference-header__navigation-item--active')
+            }
         },
         created() {},
-        methods: {},
+        methods: {
+            openSettingsPopup() {
+              document.body.dispatchEvent(new CustomEvent("open-popup", {'detail': [this.$el, 'settings-popup']}))
+            },
+            logOut() {
+                window.location.href = '/vue-rt-style-kit-pages/audioconference';
+            }
+        },
         render(h) {
             return <div class="conference-header">
                 <div class="rt-container">
@@ -32,9 +47,12 @@
                         <div class="conference-header__inner">
                             <rt-logo show-text={true} height="44px" width="26px" top-fill-color="b2c-slate"/>
                             <div class="conference-header__navigation">
-                                <a href="/vue-rt-style-kit-pages/audioconference1" class="conference-header__navigation-item conference-header__navigation-item--active">Аудиоконференции</a>
-                                <a href="/vue-rt-style-kit-pages/audioconference2" class="conference-header__navigation-item">Архив</a>
-                                <a href="/vue-rt-style-kit-pages/audioconference3" class="conference-header__navigation-item">Адресная книга</a>
+                                <a href="/vue-rt-style-kit-pages/audioconference-list" ref="list"
+                                   class="conference-header__navigation-item">Аудиоконференции</a>
+                                <a href="/vue-rt-style-kit-pages/archive" ref="archive"
+                                   class="conference-header__navigation-item">Архив</a>
+                                <a href="/vue-rt-style-kit-pages/phonebook" ref="phonebook"
+                                   class="conference-header__navigation-item">Адресная книга</a>
                             </div>
                             <div class="conference-header__person">
                                 <div class="conference-header__phone">
@@ -63,7 +81,7 @@
                                         {this.name}
                                     </p>
                                 </div>
-                                <button class="conference-header__settings-icon">
+                                <button class="conference-header__settings-icon" onClick={this.openSettingsPopup}>
                                     <svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg">
                                         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                             <g transform="translate(-1254.000000, -40.000000)" fill="#575D68" fill-rule="nonzero">
@@ -74,7 +92,7 @@
                                         </g>
                                     </svg>
                                 </button>
-                                <button class="conference-header__exit-icon">
+                                <button class="conference-header__exit-icon" onClick={this.logOut}>
                                     <svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg">
                                         <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                             <g transform="translate(-1289.000000, -41.000000)" fill="#575D68" fill-rule="nonzero">

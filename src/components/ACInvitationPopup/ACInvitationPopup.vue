@@ -13,9 +13,14 @@
         },
         mounted() {},
         created() {},
-        methods: {},
+        methods: {
+            closeThisPopup() {
+                this.$el.querySelector('.rtb-popup-close').dispatchEvent(new MouseEvent('click'));
+            }
+        },
         render(h) {
-            return <rt-real-popup trigger-element-class="conference-header__create" main-wrapper-class="app" position-center={true}>
+            return <rt-real-popup trigger-element-class="invitation-button" main-wrapper-class="app"
+                                  position-center={true} class="invitation-popup">
                 <div class="popup-content">
                     <h3 class="rt-font-h3 sp-b-1">Приглашение на конференцию</h3>
                     <rt-tabs class="bordered-tabs">
@@ -70,7 +75,8 @@
                         </template>
                     </rt-tabs>
                     <div class="sp-t-1-3">
-                        <rt-button class="rt-button-gray" small={true}>
+                        <rt-button class="rt-button-gray confirmation-button" small={true} target-popup="confirmation-popup"
+                                   popup-button={true} onClick={this.closeThisPopup}>
                             <svg width="18px" height="12px" viewBox="0 0 18 12" version="1.1" xmlns="http://www.w3.org/2000/svg">
                                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                     <g transform="translate(-3.000000, -6.000000)" fill="#575D68" fill-rule="nonzero">
