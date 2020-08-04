@@ -78,7 +78,7 @@
                                 </div>
                                 <div class="rt-col-2">
                                     <div class="flex-end-center sp-r-1">
-                                        <button class="" onClick={this.toggleOpen}>
+                                        <button class="c-p" onClick={this.toggleOpen}>
                                             <svg width="15px" height="16px" viewBox="0 0 15 16" version="1.1" xmlns="http://www.w3.org/2000/svg">
                                                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                                     <g transform="translate(-657.000000, -281.000000)">
@@ -92,7 +92,7 @@
                                                 </g>
                                             </svg>
                                         </button>
-                                        <button class="sp-l-1">
+                                        <button class="sp-l-1 c-p">
                                             <svg width="14px" height="18px" viewBox="0 0 14 18" version="1.1" xmlns="http://www.w3.org/2000/svg">
                                                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                                     <g transform="translate(-927.000000, -280.000000)">
@@ -119,8 +119,8 @@
                                     <div class="select-wrapper">
                                         <rt-input insert-type="tel" outlined={true} is-b2b-input={true} placeholder="Контактный телефон"/>
                                     </div>
-                                    <rt-button class="rt-button-orange-border color-orange" onClick={this.toggleOpen}>Сохранить изменения</rt-button>
-                                    <rt-button class="rt-button-transparent" onClick={this.toggleOpen}>Отменить</rt-button>
+                                    <rt-button class="rt-button-orange-border color-orange">Сохранить изменения</rt-button>
+                                    <rt-button class="rt-button-transparent">Отменить</rt-button>
                                 </div>
                                 <div class="rt-col-1" onClick={this.toggleOpen}>
                                     <div class="flex-end-top sp-r-1">

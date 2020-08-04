@@ -122,21 +122,23 @@
                                     <a>страницу презентации</a>
                                 </rt-table-item>
                                 <rt-table-item>
-                                    <div class="presentation-icon">
-                                        <svg width="19px" height="22px" viewBox="0 0 19 22" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                <g transform="translate(-737.000000, -1914.000000)">
-                                                    <g transform="translate(730.000000, 1908.000000)">
-                                                        <g transform="translate(5.000000, 5.000000)">
-                                                            <polygon points="0 0 24 0 24 24 0 24"></polygon>
-                                                            <path d="M16,1 L4,1 C2.9,1 2,1.9 2,3 L2,17 L4,17 L4,3 L16,3 L16,1 Z M15,5 L8,5 C6.9,5 6.01,5.9 6.01,7 L6,21 C6,22.1 6.89,23 7.99,23 L19,23 C20.1,23 21,22.1 21,21 L21,11 L15,5 Z M8,21 L8,7 L14,7 L14,12 L19,12 L19,21 L8,21 Z" fill="#575D68" fill-rule="nonzero"></path>
-                                                        </g>
-                                                    </g>
-                                                </g>
-                                            </g>
-                                        </svg>
+                                    <div class="d-inline-block color-block--cool-grey rt-space-vertical0-half rt-space-left0-half rt-space-right05">
+                                      <div class="presentation-icon vam">
+                                          <svg width="19px" height="22px" viewBox="0 0 19 22" version="1.1" xmlns="http://www.w3.org/2000/svg" class="d-block">
+                                              <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                  <g transform="translate(-737.000000, -1914.000000)">
+                                                      <g transform="translate(730.000000, 1908.000000)">
+                                                          <g transform="translate(5.000000, 5.000000)">
+                                                              <polygon points="0 0 24 0 24 24 0 24"></polygon>
+                                                              <path d="M16,1 L4,1 C2.9,1 2,1.9 2,3 L2,17 L4,17 L4,3 L16,3 L16,1 Z M15,5 L8,5 C6.9,5 6.01,5.9 6.01,7 L6,21 C6,22.1 6.89,23 7.99,23 L19,23 C20.1,23 21,22.1 21,21 L21,11 L15,5 Z M8,21 L8,7 L14,7 L14,12 L19,12 L19,21 L8,21 Z" fill="#575D68" fill-rule="nonzero"></path>
+                                                          </g>
+                                                      </g>
+                                                  </g>
+                                              </g>
+                                          </svg>
+                                      </div>
+                                      <a class="sp-l-0-3">http://presentation.rt.ru/rt/pin.jsp?pin…</a>
                                     </div>
-                                    <a class="sp-l-0-3">http://presentation.rt.ru/rt/pin.jsp?pin…</a>
                                     <rt-hint simple-tool-tip={true}>Вы можете скопировать ссылку  на презентацию, кликнув на нее мышкой</rt-hint>
                                 </rt-table-item>
                             </rt-table-row>

@@ -11,7 +11,8 @@
         },
         data() {
             return {
-                wasResponse: true
+                wasResponse: Math.round(Math.random()),
+                localConferenceList: Math.random()
             }
         },
         mounted() {},
@@ -20,6 +21,9 @@
             toggleOpen($event){
               $event.target.closest('.conference-archive__item').classList.toggle('conference-archive__item--opened');
               $event.target.closest('.conference-archive__item-field').querySelector('.conference-archive__item-field-icon').classList.toggle('conference-archive__item-field-icon--reversed');
+            },
+            getReport() {
+                this.wasResponse = true;
             }
         },
         render(h) {
@@ -29,7 +33,7 @@
                         <div class="rt-col">
                             <h1 class="rt-font-h2 sp-t-3 sp-b-1-2">Архив</h1>
                         </div>
-                        <div class="rt-col">
+                        <div class="rt-col sp-b-3">
                             <div class="conference__archive conference__archive--start">
                                 <svg class="conference__archive-icon" width="53px" height="60px" viewBox="0 0 53 60" version="1.1" xmlns="http://www.w3.org/2000/svg">
                                     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -47,20 +51,20 @@
                                 <div class="row sp-v-1-3">
                                     <div class="rt-col-4"></div>
                                     <div class="rt-col-2">
-                                        <rt-input placeholder="От" outlined={true} is-b2b-input={true}/>
+                                        <rt-input placeholder="От" outlined={true} is-b2b-input={true} type="date" class="calender-input"/>
                                     </div>
                                     <div class="rt-col-2">
-                                        <rt-input placeholder="До" outlined={true} is-b2b-input={true}/>
+                                        <rt-input placeholder="До" outlined={true} is-b2b-input={true} type="date" class="calender-input"/>
                                     </div>
                                     <div class="rt-col-4"></div>
                                 </div>
-                                <rt-button class="rt-button-orange">Сформировать отчёт</rt-button>
+                                <rt-button class="rt-button-orange" onClick={this.getReport}>Сформировать отчёт</rt-button>
                             </div>
                         </div>
                     </div>
                 </div>
             } else {
-                if(this.conferenceList.length == 0) {
+                if(this.conferenceList < 0.5) {
                     return <div class="archive-wrapper">
                         <div class="row">
                             <div class="rt-col">
@@ -70,10 +74,10 @@
                                     </div>
                                     <div class="rt-col-6 flex-center-center">
                                         <div class="select-wrapper">
-                                            <rt-input outlined={true} is-b2b-input={true} placeholder="От"/>
+                                            <rt-input outlined={true} is-b2b-input={true} placeholder="От" type="date" class="calender-input"/>
                                         </div>
                                         <div class="select-wrapper">
-                                            <rt-input outlined={true} is-b2b-input={true} placeholder="До"/>
+                                            <rt-input outlined={true} is-b2b-input={true} placeholder="До" type="date" class="calender-input"/>
                                         </div>
                                         <rt-button class="rt-button-orange-border color-orange button-in-flex">Сформировать отчёт</rt-button>
                                     </div>

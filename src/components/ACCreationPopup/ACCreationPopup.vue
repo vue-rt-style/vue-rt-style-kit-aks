@@ -16,6 +16,22 @@
         methods: {
             closeThisPopup() {
                 this.$el.querySelector('.rtb-popup-close').dispatchEvent(new MouseEvent('click'));
+                global?.dispatchEvent(new Event('newConf'));
+            },
+            toggleInput($event) {
+              $event.target.closest('.field-item').querySelector('.input-with-hint--outlined').classList.toggle('d-none')
+            },
+            controlSound($event) {
+                this.$el.querySelectorAll('.mic-icon').forEach((item)=> {
+                    item.innerHTML = '<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" class="mic-icon__svg">\n' +
+                        '    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">\n' +
+                        '        <g>\n' +
+                        '            <polygon points="0 0 24 0 24 24 0 24"></polygon>\n' +
+                        '            <path d="M10.8,4.9 C10.8,4.24 11.34,3.7 12,3.7 C12.66,3.7 13.2,4.24 13.2,4.9 L13.19,8.81 L15,10.6 L15,5 C15,3.34 13.66,2 12,2 C10.46,2 9.21,3.16 9.04,4.65 L10.8,6.41 L10.8,4.9 L10.8,4.9 Z M19,11 L17.3,11 C17.3,11.58 17.2,12.13 17.03,12.64 L18.3,13.91 C18.74,13.03 19,12.04 19,11 Z M4.41,2.86 L3,4.27 L9,10.27 L9,11 C9,12.66 10.34,14 12,14 C12.23,14 12.44,13.97 12.65,13.92 L14.31,15.58 C13.6,15.91 12.81,16.1 12,16.1 C9.24,16.1 6.7,14 6.7,11 L5,11 C5,14.41 7.72,17.23 11,17.72 L11,21 L13,21 L13,17.72 C13.91,17.59 14.77,17.27 15.55,16.82 L19.75,21.02 L21.16,19.61 L4.41,2.86 Z" fill="#575D68" fill-rule="nonzero"></path>\n' +
+                        '        </g>\n' +
+                        '    </g>\n' +
+                        '</svg>'
+                })
             }
         },
         render(h) {
@@ -32,7 +48,7 @@
                         </div>
                         <div class="manage">
                             <div class="mic-icon">
-                                <svg width="14px" height="19px" viewBox="0 0 14 19" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                                <svg width="14px" height="19px" viewBox="0 0 14 19" version="1.1" xmlns="http://www.w3.org/2000/svg" class="mic-icon__svg">
                                     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                         <g transform="translate(-972.000000, -2623.000000)">
                                             <g transform="translate(740.000000, 2601.000000)">
@@ -74,7 +90,7 @@
                             <rt-input type="number" placeholder="Количество участников" is-b2b-input={true} outlined={true} label="Минимальное количество участников — 3 человека, максимальное — 128 чел."/>
                         </div>
                         <div class="sp-t-1 field-item">
-                            <rt-input type="text" placeholder="Дата конференции" is-b2b-input={true} outlined={true}/>
+                            <rt-input type="text" placeholder="Дата конференции" is-b2b-input={true} outlined={true} type="date" class="calender-input"/>
                         </div>
                     </div>
                     <div class="row">
@@ -115,11 +131,11 @@
                                 </rt-hint>
                             </div>
                             <div class="field-item sp-b-2">
-                                <rt-switch>Конференция с лидером</rt-switch>
+                                <rt-switch onClick={this.toggleInput}>Конференция с лидером</rt-switch>
                                 <rt-hint simple-tool-tip={true}>4х-значное число. В случае, если выбрана
                                     конференция с Лидером, то PIN-коды будут совпадать.
                                 </rt-hint>
-                                <div class="sp-t-1 input-with-hint input-with-hint--outlined">
+                                <div class="sp-t-1 input-with-hint input-with-hint--outlined d-none">
                                     <rt-input type="number" is-b2b-input={true} outlined={true} placeholder="Задайте PIN-код Лидера"/>
                                     <rt-hint simple-tool-tip={true}>4х-значное число. В случае, если выбрана
                                     конференция с Лидером, то PIN-коды будут совпадать.
@@ -127,11 +143,11 @@
                                 </div>
                             </div>
                             <div class="field-item sp-b-2">
-                                <rt-switch>Конференция с презентацией</rt-switch>
+                                <rt-switch onClick={this.toggleInput}>Конференция с презентацией</rt-switch>
                                 <rt-hint simple-tool-tip={true}>4х-значное число. В случае, если выбрана
                                     конференция с Лидером, то PIN-коды будут совпадать.
                                 </rt-hint>
-                                <div class="sp-t-1 input-with-hint input-with-hint--outlined">
+                                <div class="sp-t-1 input-with-hint input-with-hint--outlined d-none">
                                     <rt-input type="number" is-b2b-input={true} outlined={true} placeholder="Задайте PIN-код Модератора"/>
                                     <rt-hint simple-tool-tip={true}>4х-значное число. В случае, если выбрана
                                     конференция с Лидером, то PIN-коды будут совпадать.
@@ -157,10 +173,10 @@
                                 <rt-input insert-type="tel" is-b2b-input={true} outlined={true}
                                           placeholder="Контактный телефон"/>
                                 <div class="sp-t-1-2 flex-start-center">
-                                    <rt-button class="rt-button-orange-border d-inline-block"
+                                    <rt-button class="rt-button-orange-border d-inline-block color-orange"
                                                small={true}>Добавить
                                     </rt-button>
-                                    <rt-button class="rt-button-cool-grey-border d-inline-block" small={true}>
+                                    <rt-button class="rt-button-cool-grey-border d-inline-block" small={true} onClick={this.controlSound}>
                                         <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1"
                                              xmlns="http://www.w3.org/2000/svg">
                                             <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">

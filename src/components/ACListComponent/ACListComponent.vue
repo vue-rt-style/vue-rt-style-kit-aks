@@ -10,17 +10,26 @@
             }
         },
         data() {
-            return {}
+            return {
+                localConferenceList: Math.random()
+            }
         },
-        mounted() {},
+        mounted() {
+            global?.addEventListener('newConf', () => {
+                this.localConferenceList = true;
+            })
+        },
         created() {},
         methods: {
             toggleOpen($event){
                 $event.target.closest('.conference-list__item').classList.toggle('conference-list__item--active');
+            },
+            invite() {
+                document.body.dispatchEvent(new CustomEvent("open-popup", {'detail': [this.$el, 'invitation-popup']}))
             }
         },
         render(h) {
-            if(this.conferenceList.length == 0) {
+            if(this.localConferenceList < 0.5) {
                 return <div class="conference__list conference__list--empty">
                     <svg class="conference__list-icon" width="50px" height="60px" viewBox="0 0 50 60" version="1.1"
                          xmlns="http://www.w3.org/2000/svg">
@@ -50,7 +59,7 @@
                     <h3 class="rt-font-h4 sp-b-1">У вас нет запланированных конференций</h3>
                     <p class="rt-font-control sp-b-1-3">Вы можете создать новую конференцию и пригласить участников,
                         воспользовавшись кнопкой ниже</p>
-                    <rt-button class="rt-button-orange">Создать аудиконференцию</rt-button>
+                    <rt-button class="rt-button-orange create-button" target-popup="create-popup" popup-button={true}>Создать аудиконференцию</rt-button>
                 </div>
             } else {
                 return <div class="conference__list">
@@ -61,12 +70,12 @@
                         <div class="rt-col-6">
                             <div class="flex-center-center">
                                 <div class="conference__input-wrapper">
-                                    <rt-input is-b2b-input={true} outlined={true} placeholder="От"/>
+                                    <rt-input is-b2b-input={true} outlined={true} placeholder="От" type="date" class="calender-input"/>
                                 </div>
                                 <div class="conference__input-wrapper">
-                                    <rt-input is-b2b-input={true} outlined={true} placeholder="До"/>
+                                    <rt-input is-b2b-input={true} outlined={true} placeholder="До" type="date" class="calender-input"/>
                                 </div>
-                                <rt-button class="rt-button-orange-border fs0">Показать за период</rt-button>
+                                <rt-button class="rt-button-orange-border fs0 color-orange">Показать за период</rt-button>
                             </div>
                         </div>
                     </div>
@@ -122,7 +131,7 @@
                                 <div class="conference-list__item-field">10</div>
                                 <div class="conference-list__item-field">есть</div>
                                 <div class="conference-list__item-field">
-                                    <div class="conference-list__item__icon" onClick={this.toggleOpen}>
+                                    <div class="conference-list__item__icon">
                                         <svg width="25px" height="24px" viewBox="0 0 25 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
                                             <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                                 <g transform="translate(1.000000, 0.000000)">
@@ -141,8 +150,53 @@
                                                 </g>
                                             </g>
                                         </svg>
+                                        <div class="conference-list__item-field__sub-menu">
+                                            <p class="conference-list__item-field__sub-menu-item invitation-button" onClick={this.invite}>
+                                                <svg class="conference-list__item-field__sub-menu-item__icon" width="20px" height="16px" viewBox="0 0 20 16" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                        <g transform="translate(-418.000000, -281.000000)">
+                                                            <g transform="translate(406.000000, 272.000000)">
+                                                                <g transform="translate(10.000000, 5.000000)">
+                                                                    <polygon id="Path" points="0 0 24 0 24 24 0 24"></polygon>
+                                                                    <path d="M22,6 C22,4.9 21.1,4 20,4 L4,4 C2.9,4 2,4.9 2,6 L2,18 C2,19.1 2.9,20 4,20 L20,20 C21.1,20 22,19.1 22,18 L22,6 Z M20,6 L12,11 L4,6 L20,6 Z M20,18 L4,18 L4,8 L12,13 L20,8 L20,18 Z" fill="#575D68" fill-rule="nonzero"></path>
+                                                                </g>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                </svg>
+                                                Отправить приглашения
+                                            </p>
+                                            <p class="conference-list__item-field__sub-menu-item">
+                                                <svg class="conference-list__item-field__sub-menu-item__icon" width="22px" height="18px" viewBox="0 0 22 18" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                        <g transform="translate(-21.000000, -72.000000)">
+                                                            <g transform="translate(20.000000, 69.000000)">
+                                                                <polygon points="0 0 24 0 24 24 0 24"></polygon>
+                                                                <path d="M21,3 L3,3 C2,3 1,4 1,5 L1,19 C1,20.1 1.9,21 3,21 L21,21 C22,21 23,20 23,19 L23,5 C23,4 22,3 21,3 Z M21,18.92 C20.98,18.95 20.94,18.98 20.92,19 L3,19 L3,5.08 L3.08,5 L20.91,5 C20.94,5.02 20.97,5.06 20.99,5.08 L20.99,18.92 L21,18.92 Z M11,15.51 L8.5,12.5 L5,17 L19,17 L14.5,11 L11,15.51 Z" fill="#575D68" fill-rule="nonzero"></path>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                </svg>
+                                                Открыть презентацию
+                                            </p>
+                                            <p class="conference-list__item-field__sub-menu-item">
+                                                <svg class="conference-list__item-field__sub-menu-item__icon" width="14px" height="18px" viewBox="0 0 14 18" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                        <g transform="translate(-927.000000, -280.000000)">
+                                                            <g transform="translate(912.000000, 272.000000)">
+                                                                <g transform="translate(10.000000, 5.000000)">
+                                                                    <polygon points="0 0 24 0 24 24 0 24"></polygon>
+                                                                    <path d="M16,9 L16,19 L8,19 L8,9 L16,9 M14.5,3 L9.5,3 L8.5,4 L5,4 L5,6 L19,6 L19,4 L15.5,4 L14.5,3 Z M18,7 L6,7 L6,19 C6,20.1 6.9,21 8,21 L16,21 C17.1,21 18,20.1 18,19 L18,7 Z" fill="#575D68" fill-rule="nonzero"></path>
+                                                                </g>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                </svg>
+                                                Удалить конференцию
+                                            </p>
+                                        </div>
                                     </div>
-                                    <div class="conference-list__item__icon">
+                                    <div class="conference-list__item__icon" onClick={this.toggleOpen}>
                                         <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
                                             <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                                 <g>
@@ -227,25 +281,25 @@
                     </div>
                     <div class="conference-list__navigation paginator d-flex sp-t-2 sp-b-1">
                         <div class="paginator__pages">
-                            <span class="arrow-back paginator__item">
+                            <a class="arrow-back paginator__item">
                                 <svg width="8px" height="12px" viewBox="0 0 8 12" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.5">
+                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                         <g transform="translate(-6.000000, -4.000000)" fill="#575D68">
                                             <polygon points="12 4 6 9.999 12 16 13.409 14.591 13.409 14.589 8.83 9.999 13.409 5.411 13.409 5.409"></polygon>
                                         </g>
                                     </g>
                                 </svg>
-                            </span>
-                            <span class="paginator__item">1</span>
-                            <span class="paginator__item">...</span>
-                            <span class="paginator__item">4</span>
-                            <span class="paginator__item paginator__item--active">5</span>
-                            <span class="paginator__item">6</span>
-                            <span class="paginator__item">7</span>
-                            <span class="paginator__item">8</span>
-                            <span class="paginator__item">...</span>
-                            <span class="paginator__item">20</span>
-                            <span class="arrow-forward paginator__item">
+                            </a>
+                            <a class="paginator__item">1</a>
+                            <a class="paginator__item">...</a>
+                            <a class="paginator__item">4</a>
+                            <a class="paginator__item paginator__item--active">5</a>
+                            <a class="paginator__item">6</a>
+                            <a class="paginator__item">7</a>
+                            <a class="paginator__item">8</a>
+                            <a class="paginator__item">...</a>
+                            <a class="paginator__item">20</a>
+                            <a class="arrow-forward paginator__item">
                                 <svg width="8px" height="12px" viewBox="0 0 8 12" version="1.1" xmlns="http://www.w3.org/2000/svg">
                                     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                         <g transform="translate(-310.000000, -4.000000)" fill="#575D68">
@@ -257,7 +311,7 @@
                                         </g>
                                     </g>
                                 </svg>
-                            </span>
+                            </a>
                         </div>
                         <div class="paginator__filter">
                             <span class="sp-r-0-2">Показывать </span>

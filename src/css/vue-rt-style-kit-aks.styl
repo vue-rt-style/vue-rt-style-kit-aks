@@ -37,12 +37,13 @@ json("./color.json")
     &__navigation
       margin-left 80px
       &-item
-        //font-size 16px
-        //line-height 18px
         color main-color05
         &+&
           margin-left 40px
         &--active
+          color main-color
+          text-shadow 0 0 .1px main-color
+        &:hover
           color main-color
           text-shadow 0 0 .1px main-color
     &__person
@@ -260,6 +261,11 @@ json("./color.json")
     padding 60px
     max-height none
   .rt-tabs--tag-mode
+    .rt-tabs-navigation__item
+      .rt-tabs-navigation__item-name
+        border 1px solid #f1f3f5
+        background-color #f1f3f5
+  .rt-tabs--tag-mode
     .rt-tabs-navigation__item--is-active
       .rt-tabs-navigation__item-name
         border 1px solid b2c-orange
@@ -270,8 +276,8 @@ json("./color.json")
     .rt-tabs-navigation__item
       .rt-tabs-navigation__item-name:hover
         border 1px solid b2c-orange
-        background-color transparent
-        color main-color
+        background-color rgba(b2c-orange, .2)
+        color b2c-orange
 
 .field-wrapper
   display flex
@@ -328,6 +334,9 @@ json("./color.json")
   size(24px)
   cursor pointer
   margin-right 12px
+  text-align center
+  &__svg
+    vertical-align middle
 
 .delete-icon
   size(20px)
@@ -382,6 +391,8 @@ json("./color.json")
     border-radius 10px
     padding 20px
     box-shadow 0 0 5px 0 rgba(main-color, .2)
+    &:hover
+      box-shadow 0 5px 7px 0 rgba(main-color, .2)
     &+&
       margin-top 10px
     &__icon,
@@ -391,6 +402,7 @@ json("./color.json")
       flex-basis 10%
       width 10%
       vertical-align top
+      position relative
       &:nth-child(1)
         width 12%
         flex-basis 12%
@@ -413,7 +425,39 @@ json("./color.json")
         flex-basis 8%
       &+&
         padding-left 30px
+      &__sub-menu
+        position absolute
+        display none
+        white-space nowrap
+        top 25px
+        right 0
+        background-color white
+        box-shadow 2px 5px 10px 0 rgba(main-color, .2)
+        z-index 2
+        &-item
+          position relative
+          padding 15px 20px 15px 54px
+          cursor pointer
+          &:hover
+            background-color #f1f3f5
+          &__icon
+            size(20px)
+            position absolute
+            top 50%
+            transform translateY(-50%)
+            left 20px
     &__icon
+      &:hover
+        line
+          stroke b2c-orange!important
+        path
+          fill b2c-orange!important
+        .conference-list__item-field__sub-menu
+          display block
+          line
+            stroke #575D68!important
+          path
+            fill #575D68!important
       &+&
         margin-left 20px
     &__date
@@ -456,10 +500,20 @@ json("./color.json")
     text-align center
     display inline-block
     cursor pointer
+    opacity .5
     &+&
       margin-left 10px
     &--active
       color b2c-orange
+      opacity 1
+    &:hover
+      opacity 1
+    &:active
+      color b2c-orange
+      opacity 1
+      g
+        fill b2c-orange
+        //stroke b2c-orange
 
 .items-quantity
   cursor pointer
@@ -577,6 +631,8 @@ json("./color.json")
     border-radius 10px
     padding 20px
     box-shadow 0 0 5px 0 rgba(main-color, .2)
+    &:hover
+      box-shadow 0 5px 7px 0 rgba(main-color, .2)
     &+&
       margin-top 10px
     &__icon,
@@ -702,3 +758,37 @@ json("./color.json")
 
 .d-i-f
   display inline-flex
+
+.calender-input
+  .text-field
+    padding 0 20px
+  .input-element
+    min-width 150px
+    padding-right 0
+    padding-top 30px
+  .input-clear
+    display none
+
+input[type="date" i]::-webkit-calendar-picker-indicator
+  background-image: -webkit-image-set(url('data:image/svg+xml;base64, PHN2ZyB3aWR0aD0iMThweCIgaGVpZ2h0PSIyMHB4IiB2aWV3Qm94PSIwIDAgMTggMjAiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPgogICAgICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0yMy4wMDAwMDAsIC0yMS4wMDAwMDApIj4KICAgICAgICAgICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMjAuMDAwMDAwLCAyMC4wMDAwMDApIj4KICAgICAgICAgICAgICAgIDxwb2x5Z29uIHBvaW50cz0iMCAwIDI0IDAgMjQgMjQgMCAyNCI+PC9wb2x5Z29uPgogICAgICAgICAgICAgICAgPHBhdGggZD0iTTE5LDMgTDE4LDMgTDE4LDEgTDE2LDEgTDE2LDMgTDgsMyBMOCwxIEw2LDEgTDYsMyBMNSwzIEMzLjg5LDMgMywzLjkgMyw1IEwzLDE5IEMzLDIwLjEgMy44OSwyMSA1LDIxIEwxOSwyMSBDMjAuMSwyMSAyMSwyMC4xIDIxLDE5IEwyMSw1IEMyMSwzLjkgMjAuMSwzIDE5LDMgWiBNMTksMTkgTDUsMTkgTDUsOSBMMTksOSBMMTksMTkgWiBNMTksNyBMNSw3IEw1LDUgTDE5LDUgTDE5LDcgWiBNNywxMSBMMTIsMTEgTDEyLDE2IEw3LDE2IEw3LDExIFoiIGZpbGw9IiMxMDE4MjgiIGZpbGwtcnVsZT0ibm9uemVybyI+PC9wYXRoPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4=') 1x)
+  position absolute
+  top 20px
+  right 0
+
+input::-webkit-datetime-edit-day-field,
+input::-webkit-datetime-edit-day-field:focus,
+input::-webkit-datetime-edit-month-field,
+input::-webkit-datetime-edit-month-field:focus,
+input::-webkit-datetime-edit-year-field,
+input::-webkit-datetime-edit-year-field:focus,
+input::-webkit-datetime-edit-text,
+input::-webkit-datetime-edit-text:focus
+  color transparent
+  background-color transparent
+  outline none
+
+.c-p
+  cursor pointer
+
+.vam
+  vertical-align middle
