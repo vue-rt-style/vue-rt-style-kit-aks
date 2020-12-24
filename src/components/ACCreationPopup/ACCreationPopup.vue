@@ -26,7 +26,7 @@
             this.formArray = Object.keys(this.$refs);
             this.inputArrowsFunc();
             this.boundPINCodes();
-            this.phoneBookList = JSON.parse(localStorage?.phonebook) || [];
+            this.phoneBookList = localStorage.phonebook ? JSON.parse(localStorage.phonebook) : [];
         },
         created() {},
         methods: {
