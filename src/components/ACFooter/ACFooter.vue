@@ -79,7 +79,7 @@
                                 {chosenLocations()}
                                 {addLocationButton()}
                             </div>
-                            <a href="/vue-rt-style-kit-pages/help" class="conference-footer__help-link" target="_blank">Нужна помощь?</a>
+                            <a href="https://vue-rt-style.github.io/vue-rt-style-kit-pages/help" class="conference-footer__help-link" target="_blank">Нужна помощь?</a>
                         </div>
                         <div class="conference-footer__bottom color-white05">
                             <div class="conference-footer__about">
