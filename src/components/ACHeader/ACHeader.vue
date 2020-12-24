@@ -40,7 +40,7 @@
               document.body.dispatchEvent(new CustomEvent("open-popup", {'detail': [this.$el, 'settings-popup']}))
             },
             logOut() {
-                window.location.href = '/audioconference';
+                window.location.href = '/vue-rt-style-kit-pages/audioconference';
             }
         },
         render(h) {
