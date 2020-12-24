@@ -15,8 +15,8 @@
         },
         data() {
             return {
-                phone: JSON.parse(localStorage.acAuth).login,
-                name: JSON.parse(localStorage.acAuth).name,
+                phone: 80000000000,
+                name: 'Username F. U.',
                 phoneNumber: null
             }
         },
