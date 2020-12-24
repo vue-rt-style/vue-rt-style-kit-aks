@@ -4,11 +4,19 @@
         name: "ACConfirmationPopup",
         components: componentsList,
         props:{
-
+            confData: {
+                type: Object,
+                default: {}
+            }
         },
         data() {
             return {
-
+                localConfData: this.confData
+            }
+        },
+        watch: {
+            confData(newVal){
+                this.localConfData = newVal
             }
         },
         mounted() {},
@@ -16,32 +24,121 @@
         methods: {
             closeThisPopup() {
                 this.$el.querySelector('.rtb-popup-close').dispatchEvent(new MouseEvent('click'));
+            },
+            deleteConf() {
+                document.body.dispatchEvent(new CustomEvent("open-popup", {'detail': [this.$el, 'delete-popup']}));
+                this.$el.querySelector('.rtb-popup-close').dispatchEvent(new MouseEvent('click'));
+            },
+            copyLink() {
+                var aux = document.createElement("input");
+                aux.setAttribute("value", this.$refs.copyField.innerText);
+                document.body.appendChild(aux);
+                aux.select();
+                document.execCommand("copy");
+                document.body.removeChild(aux);
+                this.$el.querySelector('.presentation-link-wrapper__hint').classList.add('presentation-link-wrapper__hint--active');
+                setTimeout(() => {
+                    this.$el.querySelector('.presentation-link-wrapper__hint').classList.remove('presentation-link-wrapper__hint--active')
+                },1000)
             }
         },
         render(h) {
+            const bodyContent = () => {
+                if(this.localConfData) {
+                    return <rt-table>
+                        <template slot="columns">
+                            <rt-table-col/>
+                            <rt-table-col/>
+                        </template>
+                        <template slot="body">
+                            <rt-table-row>
+                                <rt-table-item>Тема конференции</rt-table-item>
+                                <rt-table-item>{this.localConfData.theme}</rt-table-item>
+                            </rt-table-row>
+                            <rt-table-row>
+                                <rt-table-item>Ответственный</rt-table-item>
+                                <rt-table-item>{this.localConfData.leader}</rt-table-item>
+                            </rt-table-row>
+                            <rt-table-row>
+                                <rt-table-item>Дата</rt-table-item>
+                                <rt-table-item>{this.localConfData.date}</rt-table-item>
+                            </rt-table-row>
+                            <rt-table-row>
+                                <rt-table-item>Время начала</rt-table-item>
+                                <rt-table-item>
+                                    {this.localConfData.startHour ? this.localConfData.startHour.toString().length < 2 ? ('0' + this.localConfData.startHour) : this.localConfData.startHour : '??'} : {this.localConfData.startMinute ? this.localConfData.startMinute.toString().length < 2 ? ('0' + this.localConfData.startMinute) : this.localConfData.startMinute : '??'}
+                                </rt-table-item>
+                            </rt-table-row>
+                            <rt-table-row>
+                                <rt-table-item>Продолжительность</rt-table-item>
+                                <rt-table-item>{this.localConfData.durationHour ? this.localConfData.durationHour : '0'} ч {this.localConfData.durationMinute ? this.localConfData.durationMinute.toString().length < 2 ? ('0' + this.localConfData.durationMinute) : this.localConfData.durationMinute : '00'} мин</rt-table-item>
+                            </rt-table-row>
+                            <rt-table-row>
+                                <rt-table-item>PIN конф. / лидера</rt-table-item>
+                                <rt-table-item>{this.localConfData.noPIN ? 'без кода' : this.localConfData.leaderPIN} / {this.localConfData.leaderPIN ? this.localConfData.leaderPIN : 'без лидера'}</rt-table-item>
+                            </rt-table-row>
+                            <rt-table-row>
+                                <rt-table-item>Количество участников</rt-table-item>
+                                <rt-table-item>{this.localConfData.quantity}</rt-table-item>
+                            </rt-table-row>
+                            <rt-table-row>
+                                <rt-table-item>Аудиозапись</rt-table-item>
+                                <rt-table-item>{this.localConfData.audio ? 'Вкл.' : 'Выкл.'}</rt-table-item>
+                            </rt-table-row>
+                            {this.localConfData.withPresentation ? <rt-table-row>
+                                <rt-table-item>Презентация / PIN модератора</rt-table-item>
+                                <rt-table-item>Есть / {this.localConfData.modPIN} </rt-table-item>
+                            </rt-table-row> : null}
+                            {this.localConfData.withPresentation ? <rt-table-row>
+                                <rt-table-item>
+                                    <span>Перейти на </span>
+                                    <a class="color-purple" href={this.localConfData.presentationLink} target="_blank">страницу презентации</a>
+                                </rt-table-item>
+                                <rt-table-item>
+                                    <div class="flex-start-center">
+                                        <div class="d-inline-block color-block--cool-grey rt-space-vertical0-half rt-space-left0-half rt-space-right05">
+                                            <div class="d-flex presentation-link-wrapper">
+                                                <div class="presentation-icon vam">
+                                                    <svg width="19px" height="22px" viewBox="0 0 19 22" version="1.1"
+                                                         xmlns="http://www.w3.org/2000/svg" class="d-block">
+                                                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                            <g transform="translate(-737.000000, -1914.000000)">
+                                                                <g transform="translate(730.000000, 1908.000000)">
+                                                                    <g transform="translate(5.000000, 5.000000)">
+                                                                        <polygon points="0 0 24 0 24 24 0 24"></polygon>
+                                                                        <path
+                                                                            d="M16,1 L4,1 C2.9,1 2,1.9 2,3 L2,17 L4,17 L4,3 L16,3 L16,1 Z M15,5 L8,5 C6.9,5 6.01,5.9 6.01,7 L6,21 C6,22.1 6.89,23 7.99,23 L19,23 C20.1,23 21,22.1 21,21 L21,11 L15,5 Z M8,21 L8,7 L14,7 L14,12 L19,12 L19,21 L8,21 Z"
+                                                                            fill="#575D68" fill-rule="nonzero"></path>
+                                                                    </g>
+                                                                </g>
+                                                            </g>
+                                                        </g>
+                                                    </svg>
+                                                </div>
+                                                <p class="sp-l-0-3 c-p" ref="copyField"
+                                                      onClick={this.copyLink}>http://{this.localConfData.presentationLink}</p>
+                                                <p class="presentation-link-wrapper__hint">Ссылка скопирована</p>
+                                            </div>
+                                        </div>
+                                        <rt-hint simple-tool-tip={true}>Вы можете скопировать ссылку на презентацию, кликнув
+                                            на нее мышкой
+                                        </rt-hint>
+                                    </div>
+                                </rt-table-item>
+                            </rt-table-row> : null}
+                        </template>
+                    </rt-table>
+                } else {
+                    return null
+                }
+            }
             return <rt-real-popup trigger-element-class="confirmation-button" main-wrapper-class="app"
                                   position-center={true} class="confirmation-popup">
                 <div class="popup-content">
                     <h3 class="rt-font-h3 sp-b-1">Конференция успешно запланирована!</h3>
                     <p class="rt-font-small-paragraph sp-b-1-3">Теперь вы можете отправить приглашения всем
                         участникам конференции, отредактировать её или удалить.</p>
-                    <rt-button class="rt-button-cool-grey-border invitation-button" small={true} target-popup="invitation-popup"
-                               popup-button={true} onClick={this.closeThisPopup}>
-                        <svg width="20px" height="16px" viewBox="0 0 20 16" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                <g transform="translate(-418.000000, -281.000000)">
-                                    <g transform="translate(406.000000, 272.000000)">
-                                        <g transform="translate(10.000000, 5.000000)">
-                                            <polygon id="Path" points="0 0 24 0 24 24 0 24"></polygon>
-                                            <path d="M22,6 C22,4.9 21.1,4 20,4 L4,4 C2.9,4 2,4.9 2,6 L2,18 C2,19.1 2.9,20 4,20 L20,20 C21.1,20 22,19.1 22,18 L22,6 Z M20,6 L12,11 L4,6 L20,6 Z M20,18 L4,18 L4,8 L12,13 L20,8 L20,18 Z" fill="#575D68" fill-rule="nonzero"></path>
-                                        </g>
-                                    </g>
-                                </g>
-                            </g>
-                        </svg>
-                        <span class="sp-l-0-3">Отправить приглашения</span>
-                    </rt-button>
-                    <rt-button class="rt-button-cool-grey-border creation-button" small={true} target-popup="create-popup"
+                    <rt-button class="rt-button-cool-grey-border edit-button" small={true} target-popup="edit-popup"
                                popup-button={true} onClick={this.closeThisPopup}>
                         <svg width="15px" height="16px" viewBox="0 0 15 16" version="1.1" xmlns="http://www.w3.org/2000/svg">
                             <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -57,7 +154,7 @@
                         </svg>
                         <span class="sp-l-0-3">Редактировать конференцию</span>
                     </rt-button>
-                    <rt-button class="rt-button-cool-grey-border" small={true} onClick={this.closeThisPopup}>
+                    <rt-button class="rt-button-cool-grey-border" small={true} onClick={this.deleteConf}>
                         <svg width="14px" height="18px" viewBox="0 0 14 18" version="1.1" xmlns="http://www.w3.org/2000/svg">
                             <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                 <g transform="translate(-927.000000, -280.000000)">
@@ -73,79 +170,10 @@
                         <span class="sp-l-0-3">Удалить</span>
                     </rt-button>
                     <div class="sp-b-1-2"/>
-                    <rt-table>
-                        <template slot="columns">
-                            <rt-table-col/>
-                            <rt-table-col/>
-                        </template>
-                        <template slot="body">
-                            <rt-table-row>
-                                <rt-table-item>Тема конференции</rt-table-item>
-                                <rt-table-item>Финансовая отчетность III квартала 2019 года (будет показана целиком  
-                                    с переносом при необходимости)</rt-table-item>
-                            </rt-table-row>
-                            <rt-table-row>
-                                <rt-table-item>Ответственный</rt-table-item>
-                                <rt-table-item>Рихтер Р.Л. (длинное имя будет отображаться с переносом)</rt-table-item>
-                            </rt-table-row>
-                            <rt-table-row>
-                                <rt-table-item>Дата</rt-table-item>
-                                <rt-table-item>10 июня 2020</rt-table-item>
-                            </rt-table-row>
-                            <rt-table-row>
-                                <rt-table-item>Время начала</rt-table-item>
-                                <rt-table-item>14 : 00</rt-table-item>
-                            </rt-table-row>
-                            <rt-table-row>
-                                <rt-table-item>Продолжительность</rt-table-item>
-                                <rt-table-item>01 ч 30 мин</rt-table-item>
-                            </rt-table-row>
-                            <rt-table-row>
-                                <rt-table-item>PIN конф. / лидера</rt-table-item>
-                                <rt-table-item>1292 / 1234</rt-table-item>
-                            </rt-table-row>
-                            <rt-table-row>
-                                <rt-table-item>Количество участников</rt-table-item>
-                                <rt-table-item>7</rt-table-item>
-                            </rt-table-row>
-                            <rt-table-row>
-                                <rt-table-item>Аудиозапись</rt-table-item>
-                                <rt-table-item>Вкл.</rt-table-item>
-                            </rt-table-row>
-                            <rt-table-row>
-                                <rt-table-item>Презентация / PIN модератора</rt-table-item>
-                                <rt-table-item>Есть / 1234 </rt-table-item>
-                            </rt-table-row>
-                            <rt-table-row>
-                                <rt-table-item>
-                                    <span>Перейти на </span>
-                                    <a>страницу презентации</a>
-                                </rt-table-item>
-                                <rt-table-item>
-                                    <div class="d-inline-block color-block--cool-grey rt-space-vertical0-half rt-space-left0-half rt-space-right05">
-                                      <div class="presentation-icon vam">
-                                          <svg width="19px" height="22px" viewBox="0 0 19 22" version="1.1" xmlns="http://www.w3.org/2000/svg" class="d-block">
-                                              <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                  <g transform="translate(-737.000000, -1914.000000)">
-                                                      <g transform="translate(730.000000, 1908.000000)">
-                                                          <g transform="translate(5.000000, 5.000000)">
-                                                              <polygon points="0 0 24 0 24 24 0 24"></polygon>
-                                                              <path d="M16,1 L4,1 C2.9,1 2,1.9 2,3 L2,17 L4,17 L4,3 L16,3 L16,1 Z M15,5 L8,5 C6.9,5 6.01,5.9 6.01,7 L6,21 C6,22.1 6.89,23 7.99,23 L19,23 C20.1,23 21,22.1 21,21 L21,11 L15,5 Z M8,21 L8,7 L14,7 L14,12 L19,12 L19,21 L8,21 Z" fill="#575D68" fill-rule="nonzero"></path>
-                                                          </g>
-                                                      </g>
-                                                  </g>
-                                              </g>
-                                          </svg>
-                                      </div>
-                                      <a class="sp-l-0-3">http://presentation.rt.ru/rt/pin.jsp?pin…</a>
-                                    </div>
-                                    <rt-hint simple-tool-tip={true}>Вы можете скопировать ссылку  на презентацию, кликнув на нее мышкой</rt-hint>
-                                </rt-table-item>
-                            </rt-table-row>
-                        </template>
-                    </rt-table>
+                    {bodyContent()}
                     <div class="sp-t-1-3">
-                        <rt-button class="rt-button-orange" onClick={this.closeThisPopup}>Готово</rt-button>
+                        <rt-button class="rt-button-orange" target-popup="invitation-popup"
+                                   popup-button={true} onClick={this.closeThisPopup}>Отправить приглашения</rt-button>
                     </div>
                 </div>
             </rt-real-popup>

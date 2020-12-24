@@ -4,24 +4,27 @@
         name: "ACHeader",
         components: componentsList,
         props:{
-            phone: {
-                type: Number,
-                default: null
-            },
-            name: {
-                type: String,
-                default: ''
-            }
+            // phone: {
+            //     type: Number,
+            //     default: null
+            // },
+            // name: {
+            //     type: String,
+            //     default: ''
+            // }
         },
         data() {
             return {
-                phoneNumber: this.phone.toString().split('')
+                phone: JSON.parse(localStorage.acAuth).login,
+                name: JSON.parse(localStorage.acAuth).name,
+                phoneNumber: null
             }
         },
         mounted() {
-            this.phoneNumber.splice(7, 0, " ");
-            this.phoneNumber.splice(4, 0, " ");
-            this.phoneNumber.splice(1, 0, " ");
+            this.phoneNumber = this.phone.toString().split('');
+            this.phoneNumber.splice(6, 0, " ");
+            this.phoneNumber.splice(3, 0, " ");
+            this.phoneNumber.splice(0, 0, " ");
 
             if(location.href.includes('archive')){
               this.$refs.archive.classList.add('conference-header__navigation-item--active')
@@ -37,15 +40,39 @@
               document.body.dispatchEvent(new CustomEvent("open-popup", {'detail': [this.$el, 'settings-popup']}))
             },
             logOut() {
-                window.location.href = '/vue-rt-style-kit-pages/audioconference';
+                window.location.href = '/audioconference';
             }
         },
         render(h) {
+            const userName = () => {
+                if(this.phone.toString().toLowerCase() != this.name.toString().toLowerCase()) {
+                    return <div class="conference-header__name">
+                        <svg class="conference-header__name-icon" width="16px" height="16px" viewBox="0 0 16 16"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <g transform="translate(-1052.000000, -42.000000)" fill="#575D68">
+                                    <g id="Group-2-Copy-2" transform="translate(1052.000000, 41.000000)">
+                                        <path
+                                            d="M8,9 C10.2,9 12,7.2 12,5 C12,2.8 10.2,1 8,1 C5.8,1 4,2.8 4,5 C4,7.2 5.8,9 8,9 L8,9 Z M8,11 C5.3,11 0,12.3 0,15 L0,17 L16,17 L16,15 C16,12.3 10.7,11 8,11 L8,11 Z"></path>
+                                    </g>
+                                </g>
+                            </g>
+                        </svg>
+                        <p class="conference-header__name-inner">
+                            {this.name}
+                        </p>
+                    </div>
+                } else {
+                    return null
+                }
+            }
             return <div class="conference-header">
                 <div class="rt-container">
                     <div class="rt-col sp-t-0-4 sp-b-1">
                         <div class="conference-header__inner">
-                            <rt-logo show-text={true} height="44px" width="26px" top-fill-color="b2c-slate"/>
+                            <a href="https://www.rt.ru/b2b/telephony/audioconference">
+                                <rt-logo show-text={true} height="44px" width="26px" top-fill-color="b2c-slate"/>
+                            </a>
                             <div class="conference-header__navigation">
                                 <a href="/vue-rt-style-kit-pages/audioconference-list" ref="list"
                                    class="conference-header__navigation-item">Аудиоконференции</a>
@@ -65,23 +92,10 @@
                                             </g>
                                         </g>
                                     </svg>
-                                    {this.phoneNumber}
+                                    8 {this.phoneNumber}
                                 </div>
-                                <div class="conference-header__name">
-                                    <svg class="conference-header__name-icon" width="16px" height="16px" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
-                                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                            <g transform="translate(-1052.000000, -42.000000)" fill="#575D68">
-                                                <g id="Group-2-Copy-2" transform="translate(1052.000000, 41.000000)">
-                                                    <path d="M8,9 C10.2,9 12,7.2 12,5 C12,2.8 10.2,1 8,1 C5.8,1 4,2.8 4,5 C4,7.2 5.8,9 8,9 L8,9 Z M8,11 C5.3,11 0,12.3 0,15 L0,17 L16,17 L16,15 C16,12.3 10.7,11 8,11 L8,11 Z"></path>
-                                                </g>
-                                            </g>
-                                        </g>
-                                    </svg>
-                                    <p class="conference-header__name-inner">
-                                        {this.name}
-                                    </p>
-                                </div>
-                                <button class="conference-header__settings-icon" onClick={this.openSettingsPopup}>
+                                {userName()}
+                                <button class="pos-rel conference-header__settings-icon sp-h-0-2" onClick={this.openSettingsPopup}>
                                     <svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg">
                                         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                             <g transform="translate(-1254.000000, -40.000000)" fill="#575D68" fill-rule="nonzero">
@@ -91,8 +105,9 @@
                                             </g>
                                         </g>
                                     </svg>
+                                    <p class="header-button-hint">Настройки</p>
                                 </button>
-                                <button class="conference-header__exit-icon" onClick={this.logOut}>
+                                <button class="pos-rel conference-header__exit-icon sp-h-0-2" onClick={this.logOut}>
                                     <svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg">
                                         <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                             <g transform="translate(-1289.000000, -41.000000)" fill="#575D68" fill-rule="nonzero">
@@ -102,6 +117,7 @@
                                             </g>
                                         </g>
                                     </svg>
+                                    <p class="header-button-hint">Выход</p>
                                 </button>
                             </div>
                         </div>

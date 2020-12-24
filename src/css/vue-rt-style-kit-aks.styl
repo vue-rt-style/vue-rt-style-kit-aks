@@ -3,7 +3,7 @@ json("./color.json")
   background-color b2c-cool-grey05-no-opacity
   min-height 100vh
   position relative
-  padding-top 50px
+  //padding-top 50px
   &-auth
     position relative
     height 100vh
@@ -16,14 +16,36 @@ json("./color.json")
       left 0
       right auto
       bottom 0
-      background-repeat no-repeat
-      background-image url('/static/images/B2B/1694215804.png')
-      background-size cover
+      img
+        width 100%
+        max-height 100vh
+      @media(max-width tablet-upper-limit)
+        width 100%
+        z-index 0
+        overflow hidden
+        img
+          object-fit cover
+          min-width 100%
+          min-height 100%
+      @media(max-width mobile-upper-limit)
+        position relative
+        width 100%
+        z-index 0
+        height auto
+        img
+          max-width 100%
+        .rt-logo
+          position absolute
+          top 20px
+          left 20px
     &__content
       display flex
       flex-direction column
       justify-content space-between
       height 100%
+    &--mobile
+      background-color #f1f3f5
+      height 100vh
   &-header
     box-shadow 0 0 5px 0 rgba(main-color, .2)
     font-size 16px
@@ -70,9 +92,15 @@ json("./color.json")
     &__settings-icon
       margin-left 40px
       cursor pointer
+      &:hover
+        path
+          fill b2c-orange
     &__exit-icon
-      margin-left 14px
+      margin-left 6px
       cursor pointer
+      &:hover
+        path
+          fill b2c-orange
   &-footer
     padding 20px 0
     background-color main-color07-no-opacity
@@ -90,13 +118,21 @@ json("./color.json")
     &__help-link
       color b2c-white
       align-self center
+      transition opacity .2s linear
+      &:hover
+        opacity .5
     &__bottom
       padding-top 20px
       display flex
       flex-direction row
       justify-content space-between
-    &__about-icon
-      margin-left 7px
+    &__about
+      a
+        transition opacity .2s linear
+        &:hover
+          opacity .5
+      &-icon
+        margin-left 7px
     &__phone
       margin-left 40px
       font-size 18px
@@ -114,13 +150,15 @@ json("./color.json")
   &__input-wrapper
     margin-right 20px
   &__content-wrapper
-    min-height calc(100vh - 217px)
+    min-height calc(100vh - 221px)
+    position relative
   &__phonebook
     background-color b2c-white
     text-align left
     border-radius 10px
     box-shadow 0 0 5px 0 rgba(main-color, .2)
     margin-top 10px
+    margin-bottom 20px
     &--empty
       padding 80px 0
       text-align center
@@ -165,6 +203,7 @@ json("./color.json")
 .current-time
   display flex
   flex-direction row
+  align-items center
   &__location
     color b2c-cool-grey
     opacity .5
@@ -188,7 +227,7 @@ json("./color.json")
     margin-right 10px
 
 .add-location
-  margin-left 20px
+  margin-left 30px
   display flex
   align-items center
 
@@ -210,6 +249,9 @@ json("./color.json")
 .custom-wrapper
   display flex
   justify-content space-between
+  .select-wrapper
+    flex-basis calc((100% - 167px) / 2)
+    flex-grow 0
 
 .select-wrapper
   flex-grow 2
@@ -219,13 +261,17 @@ json("./color.json")
   display flex
   flex-direction row
   flex-wrap wrap
-  justify-content space-between
+  justify-content flex-start
   &__item
     flex-basis calc((100% - 40px) / 3)
     padding 20px
     background-color b2c-cool-grey05-no-opacity
     margin-bottom 20px
     position relative
+    &+&
+      margin-left 20px
+    &:nth-child(4n)
+      margin-left 0
   &__delete-button
     size(20px)
     position absolute
@@ -296,8 +342,8 @@ json("./color.json")
 
 .participants-list
   width 100%
-  border-top 1px solid main-color05
-  border-bottom 1px solid main-color05
+  //border-top 1px solid main-color05
+  //border-bottom 1px solid main-color05
 
 .participants
   border 1px solid b2c-cool-grey
@@ -323,6 +369,12 @@ json("./color.json")
   flex-direction column
   align-items flex-start
   justify-content center
+  overflow hidden
+  .rt-font-small-paragraph
+    text-overflow ellipsis
+    white-space nowrap
+    width 100%
+    overflow hidden
 
 .manage
   height 100%
@@ -342,6 +394,31 @@ json("./color.json")
   size(20px)
   cursor pointer
   margin-right 12px
+  position relative
+  &__hint
+    display none
+    min-width 80px
+    position absolute
+    z-index 999
+    right -30px
+    background-color b2c-white
+    padding 8px
+    word-break normal
+    box-shadow 0 0 8px 2px main-color02
+    &:before
+      position absolute
+      content ''
+      width 0
+      height 0
+      border-style solid
+      border-width 0 10px 10px 10px
+      border-color transparent transparent b2c-white transparent
+      top -10px
+      left 50%
+      transform translateX(-50%)
+  &:hover
+    .delete-icon__hint
+      display block
 
 .presentation-icon
   display inline-block
@@ -366,6 +443,8 @@ json("./color.json")
       width 10%
       flex-basis 10%
       word-break initial
+      user-select none
+      //flex-grow 1
       &:nth-child(1)
         width 12%
         flex-basis 12%
@@ -403,6 +482,8 @@ json("./color.json")
       width 10%
       vertical-align top
       position relative
+      max-height 40px
+      align-self flex-start
       &:nth-child(1)
         width 12%
         flex-basis 12%
@@ -446,6 +527,38 @@ json("./color.json")
             top 50%
             transform translateY(-50%)
             left 20px
+      &__hint
+        display none
+        position absolute
+        bottom -10px
+        transform translateY(100%)
+        left 20px
+        padding 8px 12px
+        background-color b2c-white
+        box-shadow 0 0 8px 2px rgba(main-color, .2)
+        z-index 2
+        cursor auto
+        &:before
+          position absolute
+          content ''
+          width 0
+          height 0
+          border-style solid
+          border-width 0 10px 10px 10px
+          border-color transparent transparent b2c-white transparent
+          top -10px
+          left 50%
+          transform translateX(-50%)
+      .ovh
+        text-overflow ellipsis
+        display -webkit-box
+        -webkit-box-orient vertical
+        -webkit-line-clamp 2
+        cursor default
+        //display inline-block
+        &:hover
+          +.conference-list__item-field__hint
+            display block
     &__icon
       &:hover
         line
@@ -463,24 +576,28 @@ json("./color.json")
     &__date
       margin-left 20px
     &-top-part
-      padding-bottom 20px
+      padding-bottom 0
+      transition padding-bottom .3s linear
     &-bottom-part
       padding-top 0
       color main-color05
       max-height 0
       overflow hidden
       transition max-height .15s linear, padding-top .15s linear
+      align-items center
     &--active
       .conference-list__item-bottom-part
         max-height 100px
         border-top 1px solid b2c-cool-grey
         padding-top 12px
+      .conference-list__item-top-part
+        padding-bottom 20px
 
 .bottom-part-item
   &:nth-child(1)
     width 60%
     flex-basis 60%
-    padding-left 44px
+    padding-left 37px
   &:nth-child(2)
     width 12%
     flex-basis 12%
@@ -525,6 +642,7 @@ json("./color.json")
 .ac-title
   flex 0 1 auto
   overflow hidden
+  flex-basis 55%
   .rt-font-paragraph
     overflow hidden
     white-space nowrap
@@ -543,30 +661,58 @@ json("./color.json")
   border-top 2px solid main-color05
   &__main-info
     flex-basis 45%
+    justify-content space-between
+    display flex
+    flex-direction column
     .field-item
       margin-top 15px
   &__participants
     flex-basis 55%
-    padding 15px 30px 15px 20px
+    padding 56px 0 16px 20px
     border 1px solid b2c-cool-grey
-    max-height 340px
-    overflow-y scroll
+    max-height 350px
+    position relative
+    overflow hidden
     &__title
       justify-content space-between
       border-bottom 2px solid b2c-cool-grey
+      position absolute
+      width 100%
+      top 0
+      left 0
+      right 0
+      padding 16px 28px 16px 20px
     &__list-item
       &+&
         margin-top 15px
+    &__list
+      overflow-y scroll
+      padding-right 28px
+      height 100%
 
 .action-buttons
   vertical-align middle
   &__item
     vertical-align middle
-    size(20px)
+    size(24px)
     text-align center
     cursor pointer
+    &>*
+      vertical-align middle
     &+&
       margin-left 10px
+
+.participant__mic-status:hover
+  path
+    fill main-color
+
+.participant__delete:hover
+  g
+    stroke main-color
+
+.active-mic
+  path
+    fill b2c-green!important
 
 .participant
   &__call-status
@@ -575,11 +721,60 @@ json("./color.json")
   &__name
     flex-grow 2
 
-.phonebook__letter
-  color main-color
-  cursor pointer
-  &--disabled
-    color main-color05
+.phonebook
+  &__letter
+    color main-color
+    cursor pointer
+    position relative
+    &:hover
+      .phonebook__hint
+        display block
+    &:last-child
+      .phonebook__hint
+        transform translateY(100%) translateX(-70%)
+        &:before
+          left 70%
+    &:nth-last-child(2)
+      .phonebook__hint
+        transform translateY(100%) translateX(-60%)
+        &:before
+          left 60%
+    &--disabled
+      color main-color05
+  &__add-form
+    max-width 70%
+    margin 0 auto
+    align-items center
+    justify-content space-around
+    .input-wrapper
+      flex-basis 33%
+    .input-wrapper+.input-wrapper
+      margin 0 20px
+  &__hint
+    display none
+    position absolute
+    bottom -10px
+    transform translateY(100%) translateX(-50%)
+    left 50%
+    padding 4px 8px
+    background-color b2c-white
+    box-shadow 0 0 8px 2px rgba(main-color, .2)
+    z-index 2
+    cursor auto
+    min-width max-content
+    text-align left
+    color main-color
+    &:before
+      position absolute
+      content ''
+      width 0
+      height 0
+      border-style solid
+      border-width 0 10px 10px 10px
+      border-color transparent transparent b2c-white transparent
+      top -10px
+      left 50%
+      transform translateX(-50%)
 
 .start-letter
   text-transform uppercase
@@ -592,7 +787,9 @@ json("./color.json")
   position relative
 
 .archive-wrapper
-  min-height calc(100vh - 217px)
+  min-height calc(100vh - 221px)
+  justify-content space-between
+  flex-direction column
 
 .button-in-flex
   white-space nowrap
@@ -640,8 +837,10 @@ json("./color.json")
       display inline-block
     &-field
       vertical-align top
-      flex-basis calc(100% / 6)
-      width calc(100% / 6)
+      //flex-basis calc(100% / 6)
+      //width calc(100% / 6)
+      position relative
+      max-height 40px
       &+&
         padding-left 30px
       &:nth-child(1),
@@ -661,6 +860,38 @@ json("./color.json")
         margin-top 4px
         &--reversed
           transform rotate(180deg)
+      &__hint
+        display none
+        position absolute
+        bottom -10px
+        transform translateY(100%)
+        left 20px
+        padding 8px 12px
+        background-color b2c-white
+        box-shadow 0 0 8px 2px rgba(main-color, .2)
+        z-index 2
+        cursor auto
+        &:before
+          position absolute
+          content ''
+          width 0
+          height 0
+          border-style solid
+          border-width 0 10px 10px 10px
+          border-color transparent transparent b2c-white transparent
+          top -10px
+          left 50%
+          transform translateX(-50%)
+      .ovh
+        text-overflow ellipsis
+        display -webkit-box
+        -webkit-box-orient vertical
+        -webkit-line-clamp 2
+        cursor default
+        //display inline-block
+        &:hover
+          +.conference-archive__item-field__hint
+            display block
     &__icon
       &+&
         margin-left 20px
@@ -759,7 +990,7 @@ json("./color.json")
 .d-i-f
   display inline-flex
 
-.calender-input
+.calendar-input
   .text-field
     padding 0 20px
   .input-element
@@ -775,20 +1006,374 @@ input[type="date" i]::-webkit-calendar-picker-indicator
   top 20px
   right 0
 
-input::-webkit-datetime-edit-day-field,
-input::-webkit-datetime-edit-day-field:focus,
-input::-webkit-datetime-edit-month-field,
-input::-webkit-datetime-edit-month-field:focus,
-input::-webkit-datetime-edit-year-field,
-input::-webkit-datetime-edit-year-field:focus,
-input::-webkit-datetime-edit-text,
-input::-webkit-datetime-edit-text:focus
-  color transparent
-  background-color transparent
-  outline none
+.calendar-input--hidden
+  input::-webkit-datetime-edit-day-field,
+  input::-webkit-datetime-edit-day-field:focus,
+  input::-webkit-datetime-edit-month-field,
+  input::-webkit-datetime-edit-month-field:focus,
+  input::-webkit-datetime-edit-year-field,
+  input::-webkit-datetime-edit-year-field:focus,
+  input::-webkit-datetime-edit-text,
+  input::-webkit-datetime-edit-text:focus
+    color transparent
+    background-color transparent
+    outline none
 
 .c-p
   cursor pointer
+  &+&
+    margin-left 10px
 
 .vam
   vertical-align middle
+
+.store-link
+  display flex
+  justify-content center
+  background-color #000
+  border-radius 8px
+
+.input-arithmetic__button
+  width 20px
+  height 20px
+  background-color b2c-white
+  opacity 1
+  background-repeat no-repeat
+  background-position center
+  &+&
+    margin-left 0
+    margin-top 5px
+
+.input-arithmetic__minus
+  background-image -webkit-image-set(url('data:image/svg+xml;base64, PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iMTNweCIgaGVpZ2h0PSI4cHgiIHZpZXdCb3g9IjAgMCAxMyA4IiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPgogICAgPHRpdGxlPmljb25zL2Rvd24vYmxhY2s8L3RpdGxlPgogICAgPGcgaWQ9ItC+0YHQvdC+0LLQvdGL0LUiIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPgogICAgICAgIDxnIGlkPSJEU0dOLTc3OF/Qm9CaX9CQ0JrQoS0xNDYwX9Cf0L7Qvy3QsNC/LdCh0L7Qt9C00LDQvdC40LUt0LrQvtC90YTQtdGA0LXQvdGG0LjQuCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTEwMjcuMDAwMDAwLCAtMTMzMy4wMDAwMDApIiBmaWxsPSIjNTc1RDY4Ij4KICAgICAgICAgICAgPGcgaWQ9IjIiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDM0Ni4wMDAwMDAsIDkyNS4wMDAwMDApIj4KICAgICAgICAgICAgICAgIDxnIGlkPSJpbnB1dC9tYWluX2FjdGl2ZS9maWxsLWNvcHktMTciIHRyYW5zZm9ybT0idHJhbnNsYXRlKDU1Ni4wMDAwMDAsIDM3Mi4wMDAwMDApIj4KICAgICAgICAgICAgICAgICAgICA8ZyBpZD0iR3JvdXAtMTIiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDEyMi4wMDAwMDAsIDEwLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgICAgICAgICA8ZyBpZD0iRmlsbC0xIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLjAwMDAwMCwgMjAuMDAwMDAwKSI+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8cG9seWdvbiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg5LjcwNDUwMCwgMTAuMDAwMDAwKSByb3RhdGUoLTkwLjAwMDAwMCkgdHJhbnNsYXRlKC05LjcwNDUwMCwgLTEwLjAwMDAwMCkgIiBwb2ludHM9IjEyIDQgNiA5Ljk5OSAxMiAxNiAxMy40MDkgMTQuNTkxIDEzLjQwOSAxNC41ODkgOC44MyA5Ljk5OSAxMy40MDkgNS40MTEgMTMuNDA5IDUuNDA5Ij48L3BvbHlnb24+CiAgICAgICAgICAgICAgICAgICAgICAgIDwvZz4KICAgICAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgIDwvZz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPg==') 1x)
+  background-position-x 3px
+
+.input-arithmetic__plus
+  background-image -webkit-image-set(url('data:image/svg+xml;base64, PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iMTNweCIgaGVpZ2h0PSI4cHgiIHZpZXdCb3g9IjAgMCAxMyA4IiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPgogICAgPHRpdGxlPmljb25zL2Rvd24vYmxhY2s8L3RpdGxlPgogICAgPGcgaWQ9ItC+0YHQvdC+0LLQvdGL0LUiIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPgogICAgICAgIDxnIGlkPSJEU0dOLTc3OF/Qm9CaX9CQ0JrQoS0xNDYwX9Cf0L7Qvy3QsNC/LdCh0L7Qt9C00LDQvdC40LUt0LrQvtC90YTQtdGA0LXQvdGG0LjQuCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTEwMjcuMDAwMDAwLCAtMTMzMy4wMDAwMDApIiBmaWxsPSIjNTc1RDY4Ij4KICAgICAgICAgICAgPGcgaWQ9IjIiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDM0Ni4wMDAwMDAsIDkyNS4wMDAwMDApIj4KICAgICAgICAgICAgICAgIDxnIGlkPSJpbnB1dC9tYWluX2FjdGl2ZS9maWxsLWNvcHktMTciIHRyYW5zZm9ybT0idHJhbnNsYXRlKDU1Ni4wMDAwMDAsIDM3Mi4wMDAwMDApIj4KICAgICAgICAgICAgICAgICAgICA8ZyBpZD0iR3JvdXAtMTIiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDEyMi4wMDAwMDAsIDEwLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgICAgICAgICA8ZyBpZD0iRmlsbC0xIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLjAwMDAwMCwgMjAuMDAwMDAwKSI+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8cG9seWdvbiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg5LjcwNDUwMCwgMTAuMDAwMDAwKSByb3RhdGUoLTkwLjAwMDAwMCkgdHJhbnNsYXRlKC05LjcwNDUwMCwgLTEwLjAwMDAwMCkgIiBwb2ludHM9IjEyIDQgNiA5Ljk5OSAxMiAxNiAxMy40MDkgMTQuNTkxIDEzLjQwOSAxNC41ODkgOC44MyA5Ljk5OSAxMy40MDkgNS40MTEgMTMuNDA5IDUuNDA5Ij48L3BvbHlnb24+CiAgICAgICAgICAgICAgICAgICAgICAgIDwvZz4KICAgICAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgIDwvZz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPg==') 1x)
+  transform rotate(180deg)
+
+.input-arithmetic
+  top 5px
+  right 8px
+  .d-flex
+    flex-direction column-reverse
+
+.settings-popup
+  .input-element[disabled]
+    color main-color
+
+.conference-list__item__icon:hover
+  .conference-list__item-field__sub-menu
+    display block
+
+.ovh
+  overflow hidden
+
+.ac-help
+  &__section
+    &+&
+      margin-top 80px
+    &:last-child
+      margin-bottom 80px
+    p+p
+        margin-top 26px
+  &__title-block,
+  &__content-block
+    max-height calc(100vh - 80px)
+    padding-right 10px
+    overflow auto
+    position relative
+    -ms-overflow-style none
+    scrollbar-width none
+    &::-webkit-scrollbar
+      display none
+  .conference-header
+    position fixed
+    z-index 9
+    top 0
+    left 0
+    right 0
+  .rt-annotation
+    padding 0
+    margin-top 20px
+    .rt-annotation
+      margin 0
+    &__title
+      display block
+      padding-left 0
+    &+.rt-annotation
+      border none
+    &__content
+      font-size 14px
+      line-height 18px
+      margin-top 6px
+      .rt-annotation__title
+        font-size 14px
+        line-height 18px
+      .rt-annotation__content
+        opacity .5
+        margin-top 6px
+      .inner-list__item
+        &+.inner-list__item
+          margin-top 12px
+      .outer-list__item
+        &+.outer-list__item
+          margin-top 16px
+  .rt-annotation__arrow
+    left auto
+    right 0
+
+.pseudo-bg
+  position absolute
+  content ''
+  top 0
+  right 0
+  bottom 0
+  background-color b2c-white
+
+.countdown-timer
+  padding-left 37px
+  position relative
+  &__disclaimer
+    position absolute
+    padding 10px
+    background-color b2c-orange
+    top 50%
+    transform translateY(-50%)
+    left 280px
+    color b2c-white
+    display none
+    &:after
+      position absolute
+      content ''
+      width 0
+      height 0
+      border-style solid
+      border-width 5px 5px 5px 0
+      border-color transparent b2c-orange transparent transparent
+      left -5px
+      top 50%
+      transform translateY(-50%)
+  &--added
+    .countdown-timer__disclaimer
+      display block
+
+.time-left
+  padding-left 30px
+
+.presentation-link
+  border none
+  resize none
+  &-wrapper
+    position relative
+    &__hint
+      display none
+      position absolute
+      width max-content
+      background-color b2c-white
+      box-shadow 0 0 8px 2px rgba(main-color, .2)
+      left 50%
+      top -45px
+      transform translateX(-50%)
+      padding 4px 8px
+      &:before
+        position absolute
+        content ''
+        width 0
+        height 0
+        border-style solid
+        border-width 7px 7px 0 7px
+        border-color b2c-white transparent transparent transparent
+        bottom -7px
+        left 20px
+      &--active
+        display block
+
+.header-button-hint
+  display none
+  position absolute
+  width max-content
+  background-color b2c-white
+  box-shadow 0 0 8px 2px rgba(main-color, .2)
+  left 50%
+  bottom -40px
+  transform translateX(-50%)
+  padding 4px 8px
+  border-radius 4px
+  &:before
+    position absolute
+    content ''
+    width 0
+    height 0
+    border-style solid
+    border-width 0 10px 10px 10px
+    border-color transparent transparent b2c-white transparent
+    top -10px
+    left 50%
+    transform translateX(-50%)
+
+.conference-header__settings-icon:hover,
+.conference-header__exit-icon:hover
+  .header-button-hint
+    display block
+
+.closed-list
+  position relative
+  padding-top 20px
+  padding-bottom 40px
+  &:before,
+  &:after
+    position absolute
+    content ''
+    width calc(100% - 20px)
+    left 10px
+    right 10px
+    height 2px
+    border-radius 1px
+    background-color main-color01
+  &:before
+    top 0
+  &:after
+    bottom 0
+  //.select-arrow
+  //  display none
+  //.select__inner
+  //  padding 1px 23px 10px 2px
+  //  .floating-placeholder
+  //    top -8px
+  //  .floating-placeholder--go-top
+  //    top -16px
+  //    color b2c-purple
+  //.select-inner-container
+  //  padding 29px 20px 0
+  //.select
+  //  padding-top 0
+  //  height 60px
+  //.select-value
+  //  padding 0
+  //  margin 0
+  //.select-list
+  //  left 1px
+  //  top 60px
+  //  width calc(100% - 2px)
+
+.rtb-popup-wrapper--active
+  background-color main-color07
+  transition background-color 0.4s linear
+
+.closed-list-icon
+  height 24px
+  position relative
+  &:hover
+    .closed-list-icon__hint
+      display block
+  &__hint
+    display none
+    position absolute
+    width max-content
+    background-color b2c-white
+    box-shadow 0 0 8px 2px rgba(main-color, .2)
+    bottom auto
+    top -10px
+    z-index 2
+    transform translateY(-100%)
+    left -14px
+    padding 4px 8px
+    &:before
+      position absolute
+      content ''
+      width 0
+      height 0
+      border-style solid
+      border-width 7px 7px 0 7px
+      border-color b2c-white transparent transparent transparent
+      bottom -7px
+      left 20px
+
+.rtb-input
+  &:hover
+    .rtb-text-field__error-message
+      display block
+  .rtb-text-field__error-message
+    display none
+    position absolute
+    min-width 270px
+    transform translateY(-50%)
+    top 50%
+    &--on-the-right
+      left calc(100% + 15px)
+    &--on-the-left
+      right calc(100% + 15px)
+      left auto
+
+.ac-pseudo-select
+  position relative
+  &__option
+    padding 8px 20px
+    display flex
+    justify-content space-between
+    align-items center
+    min-height 60px
+    &--hidden
+      display none
+    .rt-font-label
+      display none
+    &:hover
+      background-color b2c-cool-grey
+      .rt-font-label
+        display block
+      .ac-pseudo-select__option__icon-plus
+        stroke b2c-purple
+    &-wrapper
+      position absolute
+      width 100%
+      left 0
+      top 60px
+      overflow hidden
+      z-index 13
+      height 0
+      background-color b2c-white
+      box-shadow 0 0 5px 0 rgba(main-color, .2)
+      max-height 0
+      transition max-height .3s linear
+      &--active
+        height auto
+        max-height 280px
+
+.record-title
+  cursor pointer
+  &:hover
+    color b2c-orange
+    transition color .2s linear
+
+.record-body
+  height 0
+  overflow hidden
+  background-color b2c-cool-grey05-no-opacity
+  margin-left 44px
+  &--opened
+    height 60px
+  &__controls
+    flex-direction row
+    height 100%
+  &__inner
+    height 100%
+    display flex
+    justify-content space-between
+    align-items center
+  &__sound-wave
+    width 45%
+    img
+      width 100%
+      display flex
+  &__volume
+    cursor pointer
+  &__button
+    &-wrapper
+      flex-basis 20%
+
+.controls-button
+  size(24px)
+  cursor pointer
+  &+&
+    margin-left 10px

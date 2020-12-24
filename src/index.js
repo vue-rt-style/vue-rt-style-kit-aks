@@ -12,7 +12,10 @@ import {
   ACListComponent,
   ACManagePopup,
   ACPhonebookComponent,
-  ACSettingsPopup
+  ACSettingsPopup,
+  ACEditPopup,
+  ACPaginator,
+  ACDatePicker
 } from "./components";
 
 
@@ -29,6 +32,9 @@ const VueRtStyle = {
       Vue.component(ACManagePopup.name, ACManagePopup);
       Vue.component(ACPhonebookComponent.name, ACPhonebookComponent);
       Vue.component(ACSettingsPopup.name, ACSettingsPopup);
+      Vue.component(ACEditPopup.name, ACEditPopup);
+      Vue.component(ACPaginator.name, ACPaginator);
+      Vue.component(ACDatePicker.name, ACDatePicker);
       Vue.RtStyleAks = true;
     }
   }
@@ -58,5 +64,8 @@ export {
   ACListComponent,
   ACManagePopup,
   ACPhonebookComponent,
-  ACSettingsPopup
+  ACSettingsPopup,
+  ACEditPopup,
+  ACPaginator,
+  ACDatePicker
 }

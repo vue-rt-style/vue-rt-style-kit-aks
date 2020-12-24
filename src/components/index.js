@@ -8,3 +8,6 @@ export {default as ACListComponent} from './ACListComponent/ACListComponent.vue'
 export {default as ACManagePopup} from './ACManagePopup/ACManagePopup.vue';
 export {default as ACPhonebookComponent} from './ACPhonebookComponent/ACPhonebookComponent.vue';
 export {default as ACSettingsPopup} from './ACSettingsPopup/ACSettingsPopup.vue';
+export {default as ACEditPopup} from './ACEditPopup/ACEditPopup.vue';
+export {default as ACPaginator} from './ACPaginator/ACPaginator.vue';
+export {default as ACDatePicker} from './ACDatePicker/ACDatePicker.vue';
