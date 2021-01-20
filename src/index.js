@@ -15,7 +15,13 @@ import {
   ACSettingsPopup,
   ACEditPopup,
   ACPaginator,
-  ACDatePicker
+  ACDatePicker,
+  CalendarDate,
+  CalendarMonth,
+  CalendarMonthHeader,
+  CalendarView,
+  CalendarWeek,
+  CalendarWeekHeader
 } from "./components";
 
 
@@ -35,6 +41,12 @@ const VueRtStyle = {
       Vue.component(ACEditPopup.name, ACEditPopup);
       Vue.component(ACPaginator.name, ACPaginator);
       Vue.component(ACDatePicker.name, ACDatePicker);
+      Vue.component(CalendarDate.name, CalendarDate);
+      Vue.component(CalendarMonth.name, CalendarMonth);
+      Vue.component(CalendarMonthHeader.name, CalendarMonthHeader);
+      Vue.component(CalendarView.name, CalendarView);
+      Vue.component(CalendarWeek.name, CalendarWeek);
+      Vue.component(CalendarWeekHeader.name, CalendarWeekHeader);
       Vue.RtStyleAks = true;
     }
   }
@@ -67,5 +79,11 @@ export {
   ACSettingsPopup,
   ACEditPopup,
   ACPaginator,
-  ACDatePicker
+  ACDatePicker,
+  CalendarDate,
+  CalendarMonth,
+  CalendarMonthHeader,
+  CalendarView,
+  CalendarWeek,
+  CalendarWeekHeader
 }

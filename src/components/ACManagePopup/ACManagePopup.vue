@@ -58,36 +58,42 @@
         render(h) {
             const confDescription = () => {
                 if(this.localConfData) {
-                    return <div class="field-wrapper">
-                        <p class="field-item color-main05 rt-font-control">Ответственный</p>
-                        <p class="field-item rt-font-small-paragraph rt-font-bold">{this.localConfData.leader}</p>
-                        <p class="field-item color-main05 rt-font-control">PIN конф. / лидера</p>
-                        <p class="field-item rt-font-small-paragraph rt-font-bold">1292 / 1234</p>
-                        <p class="field-item color-main05 rt-font-control">Подкл. участники</p>
-                        <p class="field-item rt-font-small-paragraph rt-font-bold">{this.participantsList.length} / {this.localConfData.quantity}</p>
-                        <p class="field-item color-main05 rt-font-control">Аудиозапись</p>
-                        <p class="field-item rt-font-small-paragraph rt-font-bold">{this.localConfData.audio ? 'Вкл.' : 'Выкл.'}</p>
-                        {this.localConfData.withPresentation ? <div><p class="field-item color-main05 rt-font-control rt-link">
-                            <span class="sp-r-0-2 color-purple">Презентация</span>
-                            <svg width="12px" height="12px" viewBox="0 0 12 12" version="1.1"
-                                 xmlns="http://www.w3.org/2000/svg">
-                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                    <g transform="translate(-395.000000, -1754.000000)">
-                                        <g transform="translate(309.000000, 1752.000000)">
-                                            <g transform="translate(84.000000, 0.000000)">
-                                                <polygon points="0 0 16 0 16 16 0 16"></polygon>
-                                                <path
-                                                    d="M12.6666667,12.6666667 L3.33333333,12.6666667 L3.33333333,3.33333333 L8,3.33333333 L8,2 L3.33333333,2 C2.59333333,2 2,2.6 2,3.33333333 L2,12.6666667 C2,13.4 2.59333333,14 3.33333333,14 L12.6666667,14 C13.4,14 14,13.4 14,12.6666667 L14,8 L12.6666667,8 L12.6666667,12.6666667 Z M9.33333333,2 L9.33333333,3.33333333 L11.7266667,3.33333333 L5.17333333,9.88666667 L6.11333333,10.8266667 L12.6666667,4.27333333 L12.6666667,6.66666667 L14,6.66666667 L14,2 L9.33333333,2 Z"
-                                                    fill="#7700FF" fill-rule="nonzero"></path>
+                    return <div>
+                        <div class="field-wrapper">
+                            <p class="field-item color-main05 rt-font-control">Ответственный</p>
+                            <p class="field-item rt-font-small-paragraph rt-font-bold">{this.localConfData.leader}</p>
+                            <p class="field-item color-main05 rt-font-control">PIN конф. / лидера</p>
+                            <p class="field-item rt-font-small-paragraph rt-font-bold">1292 / 1234</p>
+                            <p class="field-item color-main05 rt-font-control">Подкл. участники</p>
+                            <p class="field-item rt-font-small-paragraph rt-font-bold">{this.participantsList.length} / {this.localConfData.quantity}</p>
+                            <p class="field-item color-main05 rt-font-control">Аудиозапись</p>
+                            <p class="field-item rt-font-small-paragraph rt-font-bold">{this.localConfData.audio ? 'Вкл.' : 'Выкл.'}</p>
+                        </div>
+                        {this.localConfData.withPresentation ? <div class="field-wrapper">
+                            <p class="field-item color-main05 rt-font-control rt-link">
+                                <span class="sp-r-0-2 color-purple">Презентация</span>
+                                <svg width="12px" height="12px" viewBox="0 0 12 12" version="1.1"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                        <g transform="translate(-395.000000, -1754.000000)">
+                                            <g transform="translate(309.000000, 1752.000000)">
+                                                <g transform="translate(84.000000, 0.000000)">
+                                                    <polygon points="0 0 16 0 16 16 0 16"></polygon>
+                                                    <path
+                                                        d="M12.6666667,12.6666667 L3.33333333,12.6666667 L3.33333333,3.33333333 L8,3.33333333 L8,2 L3.33333333,2 C2.59333333,2 2,2.6 2,3.33333333 L2,12.6666667 C2,13.4 2.59333333,14 3.33333333,14 L12.6666667,14 C13.4,14 14,13.4 14,12.6666667 L14,8 L12.6666667,8 L12.6666667,12.6666667 Z M9.33333333,2 L9.33333333,3.33333333 L11.7266667,3.33333333 L5.17333333,9.88666667 L6.11333333,10.8266667 L12.6666667,4.27333333 L12.6666667,6.66666667 L14,6.66666667 L14,2 L9.33333333,2 Z"
+                                                        fill="#7700FF" fill-rule="nonzero"></path>
+                                                </g>
                                             </g>
                                         </g>
                                     </g>
-                                </g>
-                            </svg>
-                        </p>
-                        <p class="field-item rt-font-small-paragraph rt-font-bold">Есть</p></div> : null}
-                        {this.localConfData.modPIN ? <div><p class="field-item color-main05 rt-font-control">PIN модератора</p>
-                        <p class="field-item rt-font-small-paragraph rt-font-bold">{this.localConfData.modPIN}</p></div> : null}
+                                </svg>
+                            </p>
+                            <p class="field-item rt-font-small-paragraph rt-font-bold">Есть</p>
+                        </div> : null}
+                        {this.localConfData.modPIN ? <div class="field-wrapper">
+                            <p class="field-item color-main05 rt-font-control">PIN модератора</p>
+                            <p class="field-item rt-font-small-paragraph rt-font-bold">{this.localConfData.modPIN}</p>
+                        </div> : null}
                     </div>
                 } else {
                     return null
@@ -99,7 +105,7 @@
                     let minutes = Math.floor((this.timeLeft % 3600) / 60);
                     let seconds = this.timeLeft - (hours * 3600 + minutes * 60);
                     return <div class="timing">
-                        <p class={"rt-font-control color-main05 ws-nw" + (this.timeLeft < 300 ? ' color-orange' : null)}>Закончится через</p>
+                        <p class={"rt-font-control color-main05 sp-b-0-1 ws-nw" + (this.timeLeft < 300 ? ' color-orange' : null)}>Закончится через</p>
                         <p class="rt-font-paragraph rt-font-bold">{hours.toString().length < 2 ? ('0' + hours) : hours} : {minutes.toString().length < 2 ? ('0' + minutes) : minutes} : {seconds.toString().length < 2 ? ('0' + seconds) : seconds}</p>
                     </div>
                 } else {
@@ -272,14 +278,16 @@
                                   class="manage-popup" position-center={true}>
                 <div class="popup-content">
                     <h3 class="rt-font-h3 sp-b-1">Управление конференцией</h3>
-                    <div class="d-flex sp-b-1">
+                    <div class="d-flex sp-b-1 manage-popup__top-wrapper d-space-between">
                         <div class="ac-title">
-                            <p class="rt-font-control color-main05">Тема конференции</p>
+                            <p class="rt-font-control color-main05 sp-b-0-1">Тема конференции</p>
                             <p class="rt-font-paragraph rt-font-bold">{confTheme()}</p>
                         </div>
-                        {timeLeft()}
-                        <div class="ac-button-wrapper">
-                            <rt-button class="rt-button-orange-border ws-nw color-orange" onClick={this.addTime}>+ 10 мин</rt-button>
+                        <div class="d-flex d-space-between">
+                            {timeLeft()}
+                            <div class="ac-button-wrapper">
+                                <rt-button class="rt-button-orange-border ws-nw color-orange" onClick={this.addTime}>+ 10 мин</rt-button>
+                            </div>
                         </div>
                     </div>
                     <div class="manage-conference-body d-flex sp-t-1">

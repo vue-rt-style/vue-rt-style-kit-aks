@@ -96,7 +96,7 @@
                                 </rt-table-item>
                                 <rt-table-item>
                                     <div class="flex-start-center">
-                                        <div class="d-inline-block color-block--cool-grey rt-space-vertical0-half rt-space-left0-half rt-space-right05">
+                                        <div class="presentation-link color-block--cool-grey rt-space-vertical0-half rt-space-left0-half rt-space-right05">
                                             <div class="d-flex presentation-link-wrapper">
                                                 <div class="presentation-icon vam">
                                                     <svg width="19px" height="22px" viewBox="0 0 19 22" version="1.1"

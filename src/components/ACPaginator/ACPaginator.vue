@@ -27,7 +27,7 @@
         render(h) {
             const pagesCount = () => {
                 let classList = 'paginator__item';
-                return this.conferenceList.map((item, index) => {
+                return this.conferenceList?.map((item, index) => {
                     if(index == this.currentPage || this.conferenceList.length == 1) {
                         classList += ' paginator__item--active'
                     }
@@ -35,7 +35,7 @@
                 })
             };
             return <div class="rt-col">
-                <div class="conference-list__navigation paginator d-flex sp-t-2 sp-b-1">
+                <div class="paginator d-flex sp-t-2 sp-b-1 rt-font-control">
                     <div class="paginator__pages">
                         <span class={"arrow-back paginator__item" + (this.currentPage != 1 ? ' paginator__item--active' : null)}>
                             <svg width="8px" height="12px" viewBox="0 0 8 12" version="1.1"

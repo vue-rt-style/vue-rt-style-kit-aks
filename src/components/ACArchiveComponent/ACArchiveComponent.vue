@@ -92,18 +92,14 @@
                                             </g>
                                         </svg>
                                         <h3 class="rt-font-h4 sp-b-1">Сформировать отчёт архивных конференций?</h3>
-                                        <p class="rt-font-control sp-b-1-3">Выберите желаемый период для вывода списка прошедших конференций.</p>
+                                        <p class="rt-font-control">Выберите желаемый период для вывода списка прошедших конференций.</p>
                                         <div class="row sp-v-1-3">
                                             <div class="rt-col-4"></div>
                                             <div class="rt-col-2">
-                                                <rt-input placeholder="От" outlined={true} is-b2b-input={true} type="date"
-                                                          class={"calendar-input " + (!this.since ? "calendar-input--hidden" : null)}
-                                                          ref="since" onChange={this.fixVisibility} value={this.since}/>
+                                                <a-c-date-picker placeholder="От" value={this.since} ref="since"/>
                                             </div>
                                             <div class="rt-col-2">
-                                                <rt-input placeholder="До" outlined={true} is-b2b-input={true} type="date"
-                                                          class={"calendar-input " + (!this.till ? "calendar-input--hidden" : null)}
-                                                          ref="till" onChange={this.fixVisibility} value={this.till}/>
+                                                <a-c-date-picker placeholder="До" value={this.till} ref="till"/>
                                             </div>
                                             <div class="rt-col-4"></div>
                                         </div>
@@ -127,14 +123,10 @@
                                             </div>
                                             <div class="rt-col-6 flex-center-center">
                                                 <div class="select-wrapper">
-                                                    <rt-input outlined={true} is-b2b-input={true} placeholder="От" type="date"
-                                                              class={"calendar-input " + (!this.since ? "calendar-input--hidden" : null)} ref="since"
-                                                              onChange={this.fixVisibility} value={this.since}/>
+                                                    <a-c-date-picker placeholder="От" value={this.since} ref="since"/>
                                                 </div>
                                                 <div class="select-wrapper">
-                                                    <rt-input outlined={true} is-b2b-input={true} placeholder="До" type="date"
-                                                              class={"calendar-input " + (!this.till ? "calendar-input--hidden" : null)} ref="till"
-                                                              onChange={this.fixVisibility} value={this.till}/>
+                                                    <a-c-date-picker placeholder="До" value={this.till} ref="till"/>
                                                 </div>
                                                 <rt-button class="rt-button-orange-border color-orange button-in-flex" onClick={this.getReport}>Сформировать отчёт</rt-button>
                                             </div>
@@ -212,7 +204,7 @@
                                     <div class="conference-archive__item-field">{Math.floor(itemTotalTime() / 60)} ч {itemTotalTime() % 60} мин</div>
                                     <div class="conference-archive__item-field">{item.leader}</div>
                                     <div class="conference-archive__item-field">
-                                        <p class="ovh">{item.theme}</p>
+                                        <p class="ovh rt-font-bold">{item.theme}</p>
                                         <div class="conference-archive__item-field__hint">{item.theme}</div>
                                     </div>
                                     <div class="conference-archive__item-field d-flex d-space-between">
@@ -420,14 +412,10 @@
                                                 </div>
                                                 <div class="rt-col-6 flex-center-center">
                                                     <div class="select-wrapper">
-                                                        <rt-input outlined={true} is-b2b-input={true} placeholder="От" type="date"
-                                                                  class={"calendar-input " + (!this.since ? "calendar-input--hidden" : null)}
-                                                                  ref="since" onChange={this.fixVisibility} value={this.since}/>
+                                                        <a-c-date-picker placeholder="От" value={this.since} ref="since"/>
                                                     </div>
                                                     <div class="select-wrapper">
-                                                        <rt-input outlined={true} is-b2b-input={true} placeholder="До" type="date"
-                                                                  class={"calendar-input " + (!this.till ? "calendar-input--hidden" : null)}
-                                                                  ref="till" onChange={this.fixVisibility} value={this.till}/>
+                                                        <a-c-date-picker placeholder="До" value={this.till} ref="till"/>
                                                     </div>
                                                     <rt-button class="rt-button-orange-border color-orange button-in-flex" onClick={this.getReport}>Сформировать отчёт</rt-button>
                                                 </div>
@@ -491,8 +479,7 @@
                                                 </p>
                                                 <p class="rt-font-control color-main05">за данный период</p>
                                             </div>
-                                            <div class="rt-col-1"></div>
-                                            <div class="rt-col-2 flex-end-top">
+                                            <div class="rt-col-3 flex-end-top">
                                                 <rt-button small={true} color="transparent">
                                                     <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                                         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -507,7 +494,7 @@
                                                             </g>
                                                         </g>
                                                     </svg>
-                                                    <span class="sp-l-0-2">Версия для печати</span>
+                                                    <span class="sp-l-0-2 ws-nw">Версия для печати</span>
                                                 </rt-button>
                                             </div>
                                             <div class="rt-col-2 flex-end-top">
@@ -524,7 +511,7 @@
                                                             </g>
                                                         </g>
                                                     </svg>
-                                                    <span class="sp-l-0-2">Сохранить в Exel</span>
+                                                    <span class="sp-l-0-2">Сохранить в Excel</span>
                                                 </rt-button>
                                             </div>
                                         </div>

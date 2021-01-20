@@ -127,7 +127,6 @@
                             item.querySelector('.input-with-hint--outlined').classList.add('d-none')
                         }
                     });
-                    this.$refs.date.$el.classList.add('calendar-input--hidden');
                     this.$el.querySelector('.rtb-popup-close').dispatchEvent(new MouseEvent('click'));
                     this.noTheme = false;
                     this.noDate = false;
@@ -136,11 +135,6 @@
             },
             removeParticipant(i){
                 this.localList.splice(i, 1)
-            },
-            fixVisibility() {
-                if(this.$refs.date.localValue.length > 0) {
-                    this.$refs.date.$el.classList.remove('calendar-input--hidden')
-                }
             },
             inputArrowsFunc() {
                 this.$el.querySelectorAll('.input-arithmetic__button').forEach(item => {
@@ -163,7 +157,7 @@
             validate() {
                 let noLeader = this.$refs.leader.localValue.trim().length == 0;
                 let noTheme = this.$refs.theme.localValue.trim().length == 0;
-                let noDate = this.$refs.date.$el.querySelector('.input-element').value.trim() == 0;
+                let noDate = !!this.$refs.date.formattedDate;
                 let durationH = this.$refs.durationHour.$el.querySelector('.input-element').value.trim();
                 let durationM = this.$refs.durationMinute.$el.querySelector('.input-element').value.trim();
                 this.isTooLong = Number(durationH + durationM) > 1200;
@@ -387,9 +381,7 @@
                                       show-numbers-buttons={true} onInput={this.fixQuantity} value="5"/>
                         </div>
                         <div class="sp-t-1 field-item">
-                            <rt-input type="date" placeholder="Дата конференции" is-b2b-input={true} outlined={true}
-                                      class="calendar-input calendar-input--hidden" ref="date" onChange={this.fixVisibility}
-                                      hasError={this.noDate} error-message="Необходимо выбрать дату конференции"/>
+                            <a-c-date-picker placeholder="Дата конференции" ref="date"/>
                         </div>
                     </div>
                     <div class="row">

@@ -49,6 +49,8 @@
                 $event.target.closest('.calendar-input').classList.remove('calendar-input--hidden');
             },
             filter(){
+                console.log(this.$refs.filterSince.localValue)
+                console.log(this.$refs.filterTill.localValue)
                 if(!!this.$refs.filterSince.localValue && !!this.$refs.filterTill.localValue) {
                     this.localConferenceList = this.filterFunc(this.$refs.filterSince.localValue, new Date(this.$refs.filterTill.localValue).setDate(new Date(this.$refs.filterTill.localValue).getDate() + 1))
                 } else if(!!this.$refs.filterSince.localValue) {
@@ -59,6 +61,7 @@
             },
             filterFunc(cond1,cond2){
                 let filteredList = [];
+                console.log(this.conferenceList);
                 if(cond1 && cond2) {
                     filteredList = this.conferenceList.filter(item =>
                         new Date(item.date) > new Date(cond1) && new Date(item.date) < new Date(cond2)
@@ -198,7 +201,7 @@
                             return null
                         }
                     };
-                    return <div class={"conference-list__item rt-font-control" + (item.isActive ? ' conference-list__item--active' : null)} onClick={openPopup}>
+                    return <div class={"conference-list__item rt-font-control " + (item.isActive ? ' conference-list__item--active' : null)} onClick={openPopup}>
                         <div class="conference-list__item-top-part d-flex">
                             <div class="conference-list__item-field">
                                 <div class="conference-list__item__icon active-conference-icon">
@@ -371,26 +374,24 @@
             } else {
                 return <div class="conference__list">
                     <div class="row">
-                        <div class="rt-col-6">
-                            <rt-button class="rt-button-orange create-button" target-popup="create-popup" popup-button={true}>Создать новую конференцию</rt-button>
-                        </div>
-                        <div class="rt-col-6">
-                            <div class="flex-center-center">
-                                <div class="conference__input-wrapper">
-                                    <rt-input placeholder="От" outlined={true} is-b2b-input={true} type="date"
-                                              class="calendar-input calendar-input--hidden" onChange={this.fixVisibility}
-                                              ref="filterSince"/>
+                        <div class="rt-col d-flex d-space-between">
+                            <div class="">
+                                <rt-button class="rt-button-orange create-button" target-popup="create-popup" popup-button={true}>Создать новую конференцию</rt-button>
+                            </div>
+                            <div class="">
+                                <div class="flex-center-center">
+                                    <div class="conference__input-wrapper">
+                                        <a-c-date-picker placeholder="От" ref="filterSince"/>
+                                    </div>
+                                    <div class="conference__input-wrapper">
+                                        <a-c-date-picker placeholder="До" ref="filterTill"/>
+                                    </div>
+                                    <rt-button class="rt-button-orange-border fs0 color-orange" onClick={this.filter}>Показать за период</rt-button>
                                 </div>
-                                <div class="conference__input-wrapper">
-                                    <rt-input placeholder="До" outlined={true} is-b2b-input={true} type="date"
-                                              class="calendar-input calendar-input--hidden" onChange={this.fixVisibility}
-                                              ref="filterTill"/>
-                                </div>
-                                <rt-button class="rt-button-orange-border fs0 color-orange" onClick={this.filter}>Показать за период</rt-button>
                             </div>
                         </div>
                     </div>
-                    <div class="conference-list__title sp-t-1-4 rt-font-label">
+                    <div class="conference-list__title sp-t-1-4 rt-font-label color-main05">
                         <div class="conference-list__title-field c-p" onClick={this.toggleSort}>Дата и время начала
                             <div class="conference-list__filter-icon">
                                 <svg width="8px" height="14px" viewBox="0 0 8 14" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -417,48 +418,7 @@
                     <div class="conference-list__body">
                         {conferenceBody()}
                     </div>
-                    <div class="conference-list__navigation paginator d-flex sp-t-2 sp-b-1">
-                        <div class="paginator__pages">
-                            <a class="arrow-back paginator__item">
-                                <svg width="8px" height="12px" viewBox="0 0 8 12" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                        <g transform="translate(-6.000000, -4.000000)" fill="#575D68">
-                                            <polygon points="12 4 6 9.999 12 16 13.409 14.591 13.409 14.589 8.83 9.999 13.409 5.411 13.409 5.409"></polygon>
-                                        </g>
-                                    </g>
-                                </svg>
-                            </a>
-                            <a class="paginator__item">1</a>
-                            <a class="paginator__item">...</a>
-                            <a class="paginator__item">4</a>
-                            <a class="paginator__item paginator__item--active">5</a>
-                            <a class="paginator__item">6</a>
-                            <a class="paginator__item">7</a>
-                            <a class="paginator__item">8</a>
-                            <a class="paginator__item">...</a>
-                            <a class="paginator__item">20</a>
-                            <a class="arrow-forward paginator__item">
-                                <svg width="8px" height="12px" viewBox="0 0 8 12" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                        <g transform="translate(-310.000000, -4.000000)" fill="#575D68">
-                                            <g transform="translate(304.000000, 0.000000)">
-                                                <g transform="translate(10.000000, 10.000000) scale(-1, 1) translate(-10.000000, -10.000000) ">
-                                                    <polygon points="12 4 6 9.999 12 16 13.409 14.591 13.409 14.589 8.83 9.999 13.409 5.411 13.409 5.409"></polygon>
-                                                </g>
-                                            </g>
-                                        </g>
-                                    </g>
-                                </svg>
-                            </a>
-                        </div>
-                        <div class="paginator__filter">
-                            <span class="sp-r-0-2">Показывать </span>
-                            <span class="color-main05 sp-r-0-2">по</span>
-                            <span class="items-quantity color-main05">30</span>
-                            <span class="items-quantity color-main05 items-quantity--active">50</span>
-                            <span class="items-quantity color-main05">100</span>
-                        </div>
-                    </div>
+                    <a-c-paginator conference-list={this.localConferenceList}/>
                 </div>
             }
         }

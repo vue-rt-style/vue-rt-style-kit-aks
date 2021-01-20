@@ -35,6 +35,9 @@
             this.$el.querySelectorAll('.rt-tabs-navigation__item-name').forEach(item => {
                 item.addEventListener('click', this.tabChanged)
             });
+            setTimeout(()=> {
+                this.$refs.innerContent.style.minHeight = this.$refs.innerContent.offsetHeight + 'px';
+            },100)
         },
         created() {},
         methods: {
@@ -98,7 +101,7 @@
                                 <rt-input type="password" placeholder="Повторите пароль" is-b2b-input={true}
                                           outlined={true} has-error={this.passChangeError} error-message="пароли не совпадают"/>
                             </div>
-                            <div class="sp-b-1">
+                            <div>
                                 <rt-button class="rt-button-orange" onClick={this.passChange}>Изменить пароль</rt-button>
                             </div>
                         </div>
@@ -149,7 +152,7 @@
                 })
             };
             return <rt-real-popup trigger-element-class="conference-header__settings-icon" main-wrapper-class="app" position-center={true} class="settings-popup">
-                <div class="popup-content">
+                <div class="popup-content" ref="innerContent">
                     <h3 class="rt-font-h3 sp-b-1">Настройки личного кабинета</h3>
                     <rt-tabs>
                         <template slot="navigation">

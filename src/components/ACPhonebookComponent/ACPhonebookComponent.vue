@@ -217,7 +217,7 @@
                             </g>
                         </g>
                     </svg>
-                    <h3 class="rt-font-h4 sp-b-1">Добавить новый контакт</h3>
+                    <h3 class="rt-font-h4 sp-v-1">Добавить новый контакт</h3>
                     <p class="rt-font-control sp-b-1-3">Добавьте новый контакт в адресную книгу, воспользовавшись полями
                         ниже</p>
                     <div class="phonebook__add-form field-wrapper">
@@ -244,7 +244,7 @@
                             </g>
                         </g>
                     </svg>
-                    <h3 class="rt-font-h4 sp-b-1">Нет ни одного совпадения по заданному имени</h3>
+                    <h3 class="rt-font-h4 sp-v-1">Нет ни одного совпадения по заданному имени</h3>
                     <p class="rt-font-control sp-b-1-3">Вы можете добавить новый контакт в адресную книгу,
                         воспользовавшись кнопкой ниже</p>
                     <div class="phonebook__add-form field-wrapper">
@@ -256,15 +256,15 @@
                     <div class="row">
                         <div class="rt-col-4">
                             <button class="sp-l-1">
-                                <span class="rt-font-control color-main05 sp-r-0-3">Имя контакта</span>
+                                <span class="rt-font-label color-main05 sp-r-0-3">Имя контакта</span>
                             </button>
                         </div>
                         <div class="rt-col-6">
-                            <div class="sp-l-0-4 rt-font-control color-main05">Номер телефона</div>
+                            <div class="sp-l-0-4 rt-font-label color-main05">Номер телефона</div>
                         </div>
                         <div class="rt-col-2">
                             <div class="flex-end-bottom">
-                                <span class="sp-r-1 rt-font-control color-main05">Управление</span>
+                                <span class="sp-r-1 rt-font-label color-main05">Управление</span>
                             </div>
                         </div>
                     </div>
