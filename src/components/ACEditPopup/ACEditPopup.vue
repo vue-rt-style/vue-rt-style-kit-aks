@@ -287,10 +287,7 @@
                                               show-numbers-buttons={true} onInput={this.fixQuantity} value={this.localConfData.quantity}/>
                                 </div>
                                 <div class="sp-t-1 field-item">
-                                    <rt-input type="date" placeholder="Дата конференции" is-b2b-input={true} outlined={true}
-                                              class="calendar-input" ref="date"
-                                              onChange={this.fixVisibility}
-                                              hasError={this.noDate} error-message="Необходимо выбрать дату конференции" value={this.localConfData.date}/>
+                                    <a-c-date-picker placeholder="Дата конференции" ref="date" value={this.localConfData.date}/>
                                 </div>
                             </div>
                             <div class="row">
