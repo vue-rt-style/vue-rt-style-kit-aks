@@ -73,7 +73,7 @@ json("./color.json")
       display flex
       flex-direction row
       align-items center
-      margin-bottom -3px
+      //margin-bottom -3px
     &__phone,
     &__name
       font-size 14px
@@ -90,13 +90,17 @@ json("./color.json")
         overflow hidden
         display inline-block
     &__settings-icon
+      width 24px
+      height 24px
       margin-left 40px
       cursor pointer
       &:hover
         path
           fill b2c-orange
     &__exit-icon
-      margin-left 6px
+      width 24px
+      height 24px
+      margin-left 12px
       cursor pointer
       &:hover
         path
@@ -169,7 +173,7 @@ json("./color.json")
           content ''
           position absolute
           width calc(100% - 80px)
-          height 2px
+          height 1px
           background-color b2c-cool-grey
           left 60px
           top -1px
@@ -192,7 +196,7 @@ json("./color.json")
       &--active
         .conference__phonebook__item-bottom-part
           max-height 150px
-          padding 24px 0
+          padding 30px 0
   &__archive
     &--start
       background-color b2c-white
@@ -390,16 +394,19 @@ json("./color.json")
   height 24px
   cursor pointer
   margin-right 12px
-  text-align center
-  &__svg
-    vertical-align middle
+  display flex
+  justify-content center
+  align-items center
 
 .delete-icon
   width 20px
   height 20px
   cursor pointer
-  margin-right 12px
+  margin-right 20px
   position relative
+  display flex
+  justify-content center
+  align-items center
   &__hint
     display none
     min-width 80px
@@ -770,8 +777,8 @@ json("./color.json")
       flex-grow 2
     .input-wrapper+.input-wrapper
       margin 0 20px
-    .rt-button
-      flex-basis 133px
+    //.rt-button
+    //  flex-basis 133px
   &__hint
     display none
     position absolute
@@ -1461,11 +1468,12 @@ input[type="date" i]::-webkit-calendar-picker-indicator
   opacity 1!important
 
 .single-date-picker__calendar-view
-  max-width 100%
+  min-width 300px
   position absolute
-  top 50px
-  left 0
-  right 0
+  top 64px
+  left 50%
+  right auto
+  transform translateX(-50%)
   box-shadow 0 2px 6px 1px main-color05
   border-radius 4px
   overflow hidden
@@ -1500,3 +1508,7 @@ input[type="date" i]::-webkit-calendar-picker-indicator
 
 .single-date-picker__year
   text-transform capitalize
+
+.rt-logo__rt-text
+  margin-left 0
+

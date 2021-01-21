@@ -375,7 +375,7 @@
                 return <div class="conference__list">
                     <div class="row">
                         <div class="rt-col d-flex d-space-between">
-                            <div class="">
+                            <div class="flex-start-center">
                                 <rt-button class="rt-button-orange create-button" target-popup="create-popup" popup-button={true}>Создать новую конференцию</rt-button>
                             </div>
                             <div class="">

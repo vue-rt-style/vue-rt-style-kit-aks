@@ -145,8 +145,8 @@
                     const deleteItem = () => {
                         this.deleteItemFunc(index)
                     };
-                    return <div class="conference__phonebook__item">
-                        <div class="row sp-v-0-4 conference__phonebook__item-top-part">
+                    return <div class="conference__phonebook__item rt-font-control">
+                        <div class="row sp-v-1 conference__phonebook__item-top-part">
                             <div class="rt-col-4 pos-rel">
                                 <span class="start-letter">{index == 0 || item.capital != this.localPhoneBook[index - 1].capital ? item.capital : null}</span>
                                 <span class="conference__phonebook__name sp-l-3">{item.name}</span>
@@ -165,7 +165,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row sp-v-1-2 conference__phonebook__item-bottom-part">
+                        <div class="row conference__phonebook__item-bottom-part">
                             <div class="rt-col-4">
                                 <div class="sp-l-3">
                                     <rt-input insert-type="text" outlined={true} is-b2b-input={true}
@@ -248,7 +248,7 @@
                     <p class="rt-font-control sp-b-1-3">Вы можете добавить новый контакт в адресную книгу,
                         воспользовавшись кнопкой ниже</p>
                     <div class="phonebook__add-form field-wrapper">
-                        <rt-button class="rt-button-orange" onClick={this.addContactPopup}>Добавить новый контакт</rt-button>
+                        <rt-button class="rt-button-orange fg2" onClick={this.addContactPopup}>Добавить новый контакт</rt-button>
                     </div>
                 </div>
             } else {

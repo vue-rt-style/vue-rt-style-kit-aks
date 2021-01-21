@@ -68,18 +68,18 @@
             }
             return <div class="conference-header">
                 <div class="rt-container">
-                    <div class="rt-col sp-t-0-4 sp-b-1">
+                    <div class="rt-col sp-v-0-4">
                         <div class="conference-header__inner">
-                            <a href="https://www.rt.ru/b2b/telephony/audioconference">
+                            <a href="https://www.rt.ru/b2b/telephony/audioconference" class="d-flex">
                                 <rt-logo show-text={true} height="44px" width="26px" top-fill-color="b2c-slate"/>
                             </a>
-                            <div class="conference-header__navigation">
+                            <div class="conference-header__navigation d-flex">
                                 <a href="/vue-rt-style-kit-pages/audioconference-list" ref="list"
-                                   class="conference-header__navigation-item">Аудиоконференции</a>
+                                   class="conference-header__navigation-item d-flex">Аудиоконференции</a>
                                 <a href="/vue-rt-style-kit-pages/archive" ref="archive"
-                                   class="conference-header__navigation-item">Архив</a>
+                                   class="conference-header__navigation-item d-flex">Архив</a>
                                 <a href="/vue-rt-style-kit-pages/phonebook" ref="phonebook"
-                                   class="conference-header__navigation-item">Адресная книга</a>
+                                   class="conference-header__navigation-item d-flex">Адресная книга</a>
                             </div>
                             <div class="conference-header__person">
                                 <div class="conference-header__phone">
@@ -95,7 +95,7 @@
                                     8 {this.phoneNumber}
                                 </div>
                                 {userName()}
-                                <button class="pos-rel conference-header__settings-icon sp-h-0-2" onClick={this.openSettingsPopup}>
+                                <button class="pos-rel conference-header__settings-icon flex-center-center" onClick={this.openSettingsPopup}>
                                     <svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg">
                                         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                             <g transform="translate(-1254.000000, -40.000000)" fill="#575D68" fill-rule="nonzero">
@@ -107,7 +107,7 @@
                                     </svg>
                                     <p class="header-button-hint">Настройки</p>
                                 </button>
-                                <button class="pos-rel conference-header__exit-icon sp-h-0-2" onClick={this.logOut}>
+                                <button class="pos-rel conference-header__exit-icon flex-center-center" onClick={this.logOut}>
                                     <svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg">
                                         <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                             <g transform="translate(-1289.000000, -41.000000)" fill="#575D68" fill-rule="nonzero">

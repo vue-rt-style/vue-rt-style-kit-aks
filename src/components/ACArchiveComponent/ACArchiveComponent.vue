@@ -479,7 +479,7 @@
                                                 </p>
                                                 <p class="rt-font-control color-main05">за данный период</p>
                                             </div>
-                                            <div class="rt-col-3 flex-end-top">
+                                            <div class="rt-col-5 flex-end-top">
                                                 <rt-button small={true} color="transparent">
                                                     <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                                         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -496,8 +496,6 @@
                                                     </svg>
                                                     <span class="sp-l-0-2 ws-nw">Версия для печати</span>
                                                 </rt-button>
-                                            </div>
-                                            <div class="rt-col-2 flex-end-top">
                                                 <rt-button small={true} color="transparent">
                                                     <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                                         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">

@@ -337,7 +337,7 @@
                             </svg>
                         }
                     };
-                    return <div class="sp-v-0-2 participants__item sp-l-1 sp-r-1-2 sp-v-0-2">
+                    return <div class="sp-v-0-2 participants__item sp-l-1 sp-v-0-2">
                         <div class="person">
                             <p class="rt-font-small-paragraph">{item.name}</p>
                             <p class="rt-font-label color-main05">{item.phone}</p>
