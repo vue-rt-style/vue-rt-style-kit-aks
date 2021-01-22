@@ -22,7 +22,8 @@
                 noDate: false,
                 itsOK: true,
                 isTooLong: false,
-                tooLate: false
+                tooLate: false,
+                phoneBookList: null
             }
         },
         watch: {
@@ -31,7 +32,7 @@
             }
         },
         mounted() {
-            // this.tooLate = Math.random() < 0.5;
+            this.phoneBookList = localStorage.phonebook ? JSON.parse(localStorage.phonebook) : [];
         },
         updated() {
             this.fixMathSigns();
@@ -40,7 +41,6 @@
         created() {},
         methods: {
             toggleInput($event) {
-                console.log($event.target.closest('.field-item'))
                 $event.target.closest('.field-item').querySelector('.input-with-hint--outlined').classList.toggle('d-none');
                 $event.target.closest('.field-item').querySelector('.input-with-hint').focus();
             },
@@ -102,7 +102,6 @@
                             this.confData[item] = this.$refs[item].$el.querySelector('.switch-element').checked;
                         }
                     });
-                    console.log(this.formArray);
                     let confList;
                     if(localStorage.acList) {
                         confList = JSON.parse(localStorage.acList);
@@ -111,7 +110,6 @@
                     }
                     let confIndex = confList.findIndex(item => item.confID == this.localConfData.confID);
                     confList.splice(confIndex, 1, this.confData);
-                    // confList.push(this.confData);
                     localStorage.setItem('acList', JSON.stringify(confList));
                     this.$refs.closedList.$el.querySelector('.switch-element').checked ? this.confData.participants = this.localList : null;
                     this.$emit('conf-created', this.confData);
@@ -152,18 +150,78 @@
                 if(noDate) {
                     this.noDate = true;
                 }
+            },
+            choosePerson(item, index) {
+                this.localList.push({"name": item.name, "phone": item.phone, "micActive" : true});
+                this.$el.querySelectorAll('.ac-pseudo-select__option')[index].querySelector('.ac-pseudo-select__option__icon').innerHTML = '<svg width="12px" height="9px" viewBox="0 0 12 9">\n' +
+                    '    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">\n' +
+                    '        <g transform="translate(-694.000000, -3971.000000)" stroke="#7700FF" stroke-width="2">\n' +
+                    '            <g transform="translate(406.000000, 3834.000000)">\n' +
+                    '                <g transform="translate(0.000000, 60.000000)">\n' +
+                    '                    <g transform="translate(284.000000, 71.000000)">\n' +
+                    '                        <polyline points="5 10 8.44815083 13 15 7"></polyline>\n' +
+                    '                    </g>\n' +
+                    '                </g>\n' +
+                    '            </g>\n' +
+                    '        </g>\n' +
+                    '    </g>\n' +
+                    '</svg>';
+                this.$refs.partName.$el.querySelector('.input-clear').click();
             }
         },
         render(h) {
             if(this.localConfData) {
                 const participants = () => {
                     if (this.closedMeeting) {
-                        return <div class="row">
+                        const selectOption = () => {
+                            return this.phoneBookList.map((item, index) => {
+                                const choosePerson = () => {
+                                    this.choosePerson(item, index)
+                                };
+                                return <div class="ac-pseudo-select__option">
+                                    <div>
+                                        <div class="rt-font-paragraph">{item.name}</div>
+                                        <div class="rt-font-label">{item.phone}</div>
+                                    </div>
+                                    <div class="ac-pseudo-select__option__icon d-flex" onClick={choosePerson}>
+                                        <svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1">
+                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <g>
+                                                    <path d="M0,10 C0,15.5 4.5,20 10,20 C15.5,20 20,15.5 20,10 C20,4.5 15.5,0 10,0 C4.5,0 0,4.5 0,10 Z" fill-opacity="0.5" fill="#E3E8EC"></path>
+                                                    <path d="M10,5 L10,15 M15,10 L5,10" stroke="#575D68" stroke-width="2" class="ac-pseudo-select__option__icon-plus"></path>
+                                                </g>
+                                            </g>
+                                        </svg>
+                                    </div>
+                                </div>
+                            })
+                        };
+                        const searchMatch = () => {
+                            if(this.$refs.partName.localValue != '') {
+                                this.$refs.phoneBookSelect.classList.add('ac-pseudo-select__option-wrapper--active')
+                            } else {
+                                this.$refs.phoneBookSelect.classList.remove('ac-pseudo-select__option-wrapper--active')
+                            }
+                            this.phoneBookList.map((item, index) => {
+                                if(item.name.toLowerCase().indexOf(this.$refs.partName.localValue.toLowerCase()) > -1) {
+                                    this.$el.querySelectorAll('.ac-pseudo-select__option')[index].classList.remove('ac-pseudo-select__option--hidden')
+                                } else {
+                                    this.$el.querySelectorAll('.ac-pseudo-select__option')[index].classList.add('ac-pseudo-select__option--hidden')
+                                }
+                            })
+                        };
+                        return <div class="row closed-list">
                             <div class="rt-col-6 participantForm">
                                 <p class="rt-font-small-paragraph sp-b-0-3">Добавление участников</p>
-                                <rt-input type="text" is-b2b-input={true} outlined={true}
-                                          placeholder="Имя участника" ref="partName"
-                                          disabled={this.localList.length >= this.$refs.quantity.localValue}/>
+                                <div class="ac-pseudo-select">
+                                    <rt-input type="text" is-b2b-input={true} outlined={true}
+                                              placeholder="Имя участника" ref="partName"
+                                              disabled={this.localList.length >= this.$refs.quantity.localValue}
+                                              onInput={searchMatch}/>
+                                    <div class="ac-pseudo-select__option-wrapper" ref="phoneBookSelect">
+                                        {selectOption()}
+                                    </div>
+                                </div>
                                 <p class="rt-font-label sp-t-0-3 sp-b-1 color-main05">Введите имя или выберите
                                     его из адресной книги</p>
                                 <rt-input insert-type="tel" is-b2b-input={true} outlined={true}

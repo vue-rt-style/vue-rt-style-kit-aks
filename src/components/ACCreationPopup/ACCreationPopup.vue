@@ -356,7 +356,6 @@
                                         </g>
                                     </g>
                                 </svg>
-                                <p class="delete-icon__hint">Удалить участника из списка</p>
                             </div>
                         </div>
                     </div>

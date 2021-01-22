@@ -14,11 +14,11 @@
                 localConfData: this.confData,
                 timeLeft: null,
                 participantsList: [
-                    {name: 'Ввапывапп. А. Ф', phone: '4353452345', micActive: true},
+                    {name: 'Ввапывапп. А. Ф', phone: '1111111111', micActive: true},
                     {name: 'Алордл. А. Ф', phone: '4353452345', micActive: true},
                     {name: 'Допмсоирд. А. Ф', phone: '4353452345', micActive: true},
-                    {name: 'Кломолм. А. Ф', phone: '4353452345', micActive: true},
-                    {name: 'Ввапывапп. А. Ф', phone: '4353452345', micActive: true},
+                    {name: 'Кломолм ывапдватпвадвап выапывапывап', phone: '4353452345', micActive: true},
+                    {name: '-', phone: '4353452345', micActive: true},
                     {name: 'Алордл. А. Ф', phone: '4353452345', micActive: true},
                     {name: 'Допмсоирд. А. Ф', phone: '4353452345', micActive: true},
                     {name: 'Кломолм. А. Ф', phone: '4353452345', micActive: true}
@@ -228,7 +228,9 @@
                         <div class="participant__call-status">
                             {callStatus()}
                         </div>
-                        <div class="participant__name sp-l-1-1">{item.name}</div>
+                        <div class="participant__name sp-l-1-1 ovh">
+                            <p class="ovh ws-nw">{item.name}</p>
+                        </div>
                         <button class="action-buttons__item participant__mic-status" onClick={toggleMic}>
                             {micStatus()}
                         </button>

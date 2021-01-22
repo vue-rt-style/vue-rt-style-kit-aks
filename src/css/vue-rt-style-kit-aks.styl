@@ -710,6 +710,9 @@ json("./color.json")
     height 24px
     text-align center
     cursor pointer
+    flex-basis 24px
+    margin-left 5px
+    flex-shrink 0
     &>*
       vertical-align middle
     &+&
@@ -732,8 +735,11 @@ json("./color.json")
     width 12px
     height 12px
     text-align center
+    flex-shrink 0
   &__name
-    flex-grow 2
+    flex-grow 1
+    .ovh
+      text-overflow ellipsis
 
 .phonebook
   &__letter
@@ -1424,7 +1430,7 @@ input[type="date" i]::-webkit-calendar-picker-indicator
     width 100%
     height 60px
     outline none
-    border 1px solid main-color05
+    border 1px solid rgba(b2c-cool-grey, .9)
     line-height 50px
     padding 16px 16px 0
   &__calendar-icon
@@ -1512,3 +1518,6 @@ input[type="date" i]::-webkit-calendar-picker-indicator
 .rt-logo__rt-text
   margin-left 0
 
+.participant__phone
+  width 140px
+  flex 0 0 140px
